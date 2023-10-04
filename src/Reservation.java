@@ -79,7 +79,7 @@ public class Reservation
         {
             return false;
         }
-        if(resvp.checkOutDate == null)
+        if(rsvp.checkOutDate == null)
         {
             return false;
         }
