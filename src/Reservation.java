@@ -1,6 +1,8 @@
+import java.util.Date;
+
 public class Reservation
 {
-    private int time;
+    private Date date;
     private Customer customer;
     private int room_number;
 
@@ -8,14 +10,14 @@ public class Reservation
 
     public Reservation()
     {
-        this.time = 0;
+        this.date = null;
         this.customer = null;
-        this.room_number = 0;
+        this.room_number = -1;
     }
 
-    public Reservation(int time, Customer customer, int room_number)
+    public Reservation(Date date, Customer customer, int room_number)
     {
-        this.time = time;
+        this.date = date;
         this.customer = customer;
         this.room_number = room_number;
     }
@@ -25,14 +27,57 @@ public class Reservation
         return this.room_number;
     }
 
+    public void setRoomNumber(int room_number)
+    {
+        this.room_number = room_number;
+    }
+
     public Customer getCustomer()
     {
         return this.customer;
     }
 
-    public int getReservation()
+    public void setCustomer(Customer customer)
     {
-        return 0;
+        this.customer = customer;
+    }
+
+    public Date getReservationDate()
+    {
+        return this.date;
+    }
+
+    public void setReservationDate(Date date)
+    {
+        this.date = date;
+    }
+
+    public boolean isComplete(Reservation rsvp)
+    {
+        if(rsvp.customer == null)
+        {
+            return false;
+        }
+        if(rsvp.room_number == -1)
+        {
+            return false;
+        }
+        if(rsvp.date == null)
+        {
+            return false;
+        }
+        return true;
+    }
+
+    public void saveReservation(Reservation rsvp)
+    {
+        if(!(isComplete(rsvp) == true))
+        {
+            return;
+        }
+
+        //save to file
+        
     }
 
 
