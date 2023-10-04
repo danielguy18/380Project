@@ -1,4 +1,4 @@
-import java.util.Date;
+import java.time.*;
 
 public class Customer
 {
@@ -6,7 +6,7 @@ public class Customer
     private String last_name;
     private String email;
     private String address;
-    private Date birthday;
+    private LocalDate birthday;
 
     public Customer()
     {
@@ -57,12 +57,12 @@ public class Customer
         this.address = address;
     }
 
-    public Date getBirthday()
+    public LocalDate getBirthday()
     {
         return this.birthday;
     }
 
-    public void setBirthday(Date bday)
+    public void setBirthday(LocalDate bday)
     {
         this.birthday = bday;
     }
