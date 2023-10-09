@@ -1,8 +1,9 @@
-import java.util.Date;
+import java.time.*;
 
 public class Reservation
 {
-    private Date date;
+    private LocalDate checkInDate;
+    private LocalDate checkOutDate;
     private Customer customer;
     private int room_number;
 
@@ -10,14 +11,16 @@ public class Reservation
 
     public Reservation()
     {
-        this.date = null;
+        this.checkInDate = null;
+        this.checkOutDate = null;
         this.customer = null;
         this.room_number = -1;
     }
 
-    public Reservation(Date date, Customer customer, int room_number)
+    public Reservation(LocalDate checkInDate, LocalDate checkOutDate, Customer customer, int room_number)
     {
-        this.date = date;
+        this.checkInDate = checkInDate;
+        this.checkOutDate = checkOutDate;
         this.customer = customer;
         this.room_number = room_number;
     }
@@ -42,14 +45,24 @@ public class Reservation
         this.customer = customer;
     }
 
-    public Date getReservationDate()
+    public LocalDate getCheckInDate()
     {
-        return this.date;
+        return this.checkInDate;
     }
 
-    public void setReservationDate(Date date)
+    public void setCheckInDate(LocalDate date)
     {
-        this.date = date;
+        this.checkInDate = date;
+    }
+
+    public LocalDate getCheckOutDate()
+    {
+        return this.checkOutDate;
+    }
+
+    public void setCheckOutDate(LocalDate date)
+    {
+        this.checkOutDate = date;
     }
 
     public boolean isComplete(Reservation rsvp)
@@ -62,22 +75,34 @@ public class Reservation
         {
             return false;
         }
-        if(rsvp.date == null)
+        if(rsvp.checkInDate == null)
+        {
+            return false;
+        }
+        if(rsvp.checkOutDate == null)
         {
             return false;
         }
         return true;
     }
 
-    public void saveReservation(Reservation rsvp)
+    public int saveReservation(Reservation rsvp)
     {
+        int confirmation = -1;
         if(!(isComplete(rsvp) == true))
         {
-            return;
+            return 0;
         }
 
+        return confirmation;
         //save to file
-        
+
+    }
+
+    public Reservation getRSVP(int confirmation)
+    {
+        Reservation r = new Reservation();
+        return r;
     }
 
 
