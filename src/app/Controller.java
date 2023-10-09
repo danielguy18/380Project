@@ -19,10 +19,11 @@ public class Controller {
    public void onFileOpenButtonClicked(ActionEvent event) {
       try {
          FileChooser fileChooser = new FileChooser();
+         fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
          fileChooser.setTitle("Open Resource File");
          file = fileChooser.showOpenDialog(null);
          // File verification
-         if (!file.exists() || !file.isFile() || !getExtension(file.getName()).equals(".csv")) {
+         if (file == null || !file.exists() || !file.isFile() || !getExtension(file.getName()).equals(".csv")) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Invalid file. Please select a valid .csv file.");
             alert.show();
