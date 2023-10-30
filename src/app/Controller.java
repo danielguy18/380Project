@@ -36,6 +36,7 @@ public class Controller {
             file = null;
          } else {
             alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("File Opened");
             alert.setContentText("File opened successfully at path: " + file.getAbsolutePath());
             alert.show();
          }
