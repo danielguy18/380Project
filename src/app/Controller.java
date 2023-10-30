@@ -2,6 +2,9 @@ package app;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.Reader;
+
 import javafx.fxml.FXML;
 import javafx.stage.FileChooser;
 import javafx.event.ActionEvent;
@@ -9,6 +12,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVPrinter;
+import org.apache.commons.csv.CSVRecord;
 
 public class Controller {
 
@@ -29,12 +35,13 @@ public class Controller {
             alert.show();
             file = null;
          }
+         // handle csv file
+         printConsoleCSV(); //debug function
       } catch (SecurityException e) {
          alert.setAlertType(Alert.AlertType.ERROR);
          alert.setContentText("Security Exception");
          alert.show();
       }
-
 
    }
 
@@ -46,6 +53,21 @@ public class Controller {
       } else {
          return "";
       }
+   }
+
+   public void printConsoleCSV() {
+      try {
+         Reader in = new FileReader(file.toString());
+         Iterable<CSVRecord> records = CSVFormat.RFC4180.parse(in);
+         for (CSVRecord record : records) {
+            System.out.println(record.get(0));
+            System.out.println(record.get(1));
+            System.out.println(record.get(2));
+         }
+      } catch (Exception e) {
+         System.err.println(e.getMessage());
+      }
+
    }
 
 }
