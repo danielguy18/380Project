@@ -34,6 +34,10 @@ public class Controller {
             alert.setContentText("Invalid file. Please select a valid .csv file.");
             alert.show();
             file = null;
+         } else {
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.setContentText("File opened successfully at path: " + file.getAbsolutePath());
+            alert.show();
          }
          // handle csv file
          printConsoleCSV(); //debug function
