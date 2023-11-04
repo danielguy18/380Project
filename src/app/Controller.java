@@ -19,25 +19,33 @@ import org.apache.commons.csv.CSVRecord;
 public class Controller {
 
    Alert alert = new Alert(Alert.AlertType.NONE);
-   private File file;
+   private File csvFile;
 
-   // File->Open
+   
+   /** 
+    * This function corresponds with the File->Open MenuItem. When clicked, it will open a window prompting the user to choose a file.
+      If the file extension is not .csv, it will output an error message. 
+      If the file extension is .csv, it will output a success message and assign the file to the {@link #csvFile} variable.
+      Uses {@link #getExtension(String)} to check the file extension.
+    * @author Bao Ngo
+    * @param event the event that triggers the button click
+    */
    public void onFileOpenButtonClicked(ActionEvent event) {
       try {
          FileChooser fileChooser = new FileChooser();
          fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
          fileChooser.setTitle("Open Resource File");
-         file = fileChooser.showOpenDialog(null);
+         csvFile = fileChooser.showOpenDialog(null);
          // File verification
-         if (file == null || !file.exists() || !file.isFile() || !getExtension(file.getName()).equals(".csv")) {
+         if (csvFile == null || !csvFile.exists() || !csvFile.isFile() || !getExtension(csvFile.getName()).equals(".csv")) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Invalid file. Please select a valid .csv file.");
             alert.show();
-            file = null;
+            csvFile = null;
          } else {
             alert.setAlertType(Alert.AlertType.INFORMATION);
             alert.setHeaderText("File Opened");
-            alert.setContentText("File opened successfully at path: " + file.getAbsolutePath());
+            alert.setContentText("File opened successfully at path: " + csvFile.getAbsolutePath());
             alert.show();
          }
          // handle csv file
@@ -50,9 +58,17 @@ public class Controller {
 
    }
 
-   public String getExtension(String filename) {
-      Pattern pattern = Pattern.compile("\\.[0-9a-z]{1,5}$", Pattern.CASE_INSENSITIVE);
-      Matcher matcher = pattern.matcher(filename);
+   
+   /** 
+    * Checks the inputted fileName and output the extension of the file. 
+    * The extension must be at the end of the string with no trailing whitespace. The extension character limit is maximum of 5.
+    * @author Bao Ngo
+    * @param fileName the file name to be examined in string
+    * @return the extension of the file including the dot (e.g. ".csv") or empty if no extension was found
+    */
+   public String getExtension(String fileName) {
+      Pattern pattern = Pattern.compile("\\.[0-9a-z]{1,6}$", Pattern.CASE_INSENSITIVE);
+      Matcher matcher = pattern.matcher(fileName);
       if (matcher.find()) {
          return matcher.group();
       } else {
@@ -60,9 +76,11 @@ public class Controller {
       }
    }
 
+   // Debug function to print out the csv file to console
+   //first 3 columns only
    public void printConsoleCSV() {
       try {
-         Reader in = new FileReader(file.toString());
+         Reader in = new FileReader(csvFile.toString());
          Iterable<CSVRecord> records = CSVFormat.RFC4180.parse(in);
          for (CSVRecord record : records) {
             System.out.println(record.get(0));
