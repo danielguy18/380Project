@@ -1,18 +1,16 @@
-## Getting Started
+Good JavaFX Tutorial:
+    https://www.youtube.com/watch?v=AubJaosfI-0
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Installation:
+    Download JAVAFX - SDK
+    Download SceneBuilder
 
-## Folder Structure
-
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+SceneBuilder- AnchorPane
+Add Label
+Add TextField
+Code --> fxcid--> txTitle
+    Add listener to the button: Code --> "On Action"  : btnOKClicked
+save interface "MainScene" to src folder
+Generate source code of Controller
+    View --> Show Sample Controller Skeleton --> Paste into MainSceneController.java
+Enter name of Controller Class into the MainScene.fxml Controller class section (bottom left) "MainSceneController"

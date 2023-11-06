@@ -20,7 +20,7 @@ try {
     root = FXMLLoader.load(getClass().getResource("MainScene.fxml"));
     Scene scene = new Scene(root);  //Gets information from Scene like length/width
   
-    primaryStage.setTitle("Hello World! asd");  //Names the Title of the Window "..."
+    primaryStage.setTitle("ZADB Hotel Reservation System");  //Names the Title of the Window "..."
     primaryStage.setScene(scene);
     primaryStage.show();
 } catch (IOException e) {
