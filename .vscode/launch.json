@@ -6,7 +6,15 @@
     "configurations": [
         {
             "type": "java",
-            "name": "CCurrent File",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "App",
+            "projectName": "380Project_daddb4ca",
+            "vmArgs": "--module-path \"/Users/zel/Documents/Java/javafx-sdk-21.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
+        },
+        {
+            "type": "java",
+            "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"
         },
@@ -16,7 +24,7 @@
             "request": "launch",
             "mainClass": "App",
             "projectName": "380Project_3aab9061",
-            "vmArgs": "--module-path \"C:/Java/javafx-sdk-21.0.1/lib\" --add-modules javafx.controls,javafx.fxml",
+            "vmArgs": "--module-path \"/Users/zel/Documents/Java/javafx-sdk-21.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
         }
     ]
 }
