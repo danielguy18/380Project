@@ -6,13 +6,6 @@
     "configurations": [
         {
             "type": "java",
-            "name": "testing",
-            "request": "launch",
-            "mainClass": "testing",
-            "projectName": "380Project_daddb4ca"
-        },
-        {
-            "type": "java",
             "name": "App",
             "request": "launch",
             "mainClass": "App",
