@@ -17,6 +17,8 @@ public class MainSceneController {
     
     @FXML
     private ImageView img_id_1;
+    @FXML
+    private ImageView img_id_2;
 
     @FXML
     void btnOKClicked(ActionEvent event) {
@@ -31,6 +33,11 @@ public class MainSceneController {
         //Stage mainWindow = (Stage) txTitle.getScene().getWindow(); //Obtains the Main Window
         //String title = txTitle.getText();   //reads the text of the text field
         //mainWindow.setTitle(title);     //Modifys the title of the window.
+    }
+
+    @FXML
+    void img_id_2_clicked(MouseEvent event) {
+
     }
 
 }
