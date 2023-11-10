@@ -1,9 +1,5 @@
-import java.io.FileReader;
+package app;
 import java.time.*;
-import java.util.List;
-
-import com.opencsv.CSVReader;
-import com.opencsv.CSVReaderBuilder;
 
 public class Customer
 {
@@ -20,15 +16,6 @@ public class Customer
         this.email = null;
         this.address = null;
         this.birthday = null;
-    }
-
-    public Customer(String fn, String ln, String em, String add, LocalDate bday)
-    {
-        this.first_name = fn;
-        this.last_name = ln;
-        this.email = em;
-        this.address = add;
-        this.birthday = bday;
     }
 
     public String getFirstName()
@@ -83,13 +70,10 @@ public class Customer
 
     public String toString()
     {
-        return this.first_name + " " + this.last_name + "\n" + this.email + "\n" + this.address + "\n" + this.birthday.toString();
+        String name = this.first_name + " " + this.last_name + "\n" + this.getEmail() + "\n" + this.birthday.toString() + "\n" + this.address;
+        return name;
+        
     }
-
-   
-
-   
-
 
 
 }
