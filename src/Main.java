@@ -42,8 +42,9 @@ public class Main
         Customer cust = new Customer(fn, ln, em, add, formatted_date);
         System.out.println(cust.toString());
         CSVUtil.loadCustomerData();
-        CSVUtil.printConsoleCSV();
         CSVUtil.printList(); 
+        Customer.addCustomer(cust);
+        CSVUtil.saveCustomerData();
 
 
         

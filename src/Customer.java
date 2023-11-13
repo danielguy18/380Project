@@ -85,6 +85,39 @@ public class Customer
     {
         return this.first_name + " " + this.last_name + "\n" + this.email + "\n" + this.address + "\n" + this.birthday.toString();
     }
+    public static boolean isComplete(Customer customer)
+    {
+        if(customer.first_name == null)
+        {
+            return false;
+        }
+        if(customer.last_name == null)
+        {
+            return false;
+        }
+        if(customer.email == null)
+        {
+            return false;
+        }
+        if(customer.address == null)
+        {
+            return false;
+        }
+        if(customer.birthday == null)
+        {
+            return false;
+        }
+        return true;
+    }
+
+    public static void addCustomer(Customer customer)
+    {
+        if(isComplete(customer) == true)
+        {
+            String[] temp = {customer.first_name, customer.last_name, customer.address, customer.email, customer.birthday.toString()};
+            CSVUtil.cdata.add(temp);
+        }
+    }
 
    
 
