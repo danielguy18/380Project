@@ -2,7 +2,7 @@ public class Room {
 
     enum RoomType
     {
-        SMOKING, NONSMOKING, KING, QUEEN, DUALQUEEN
+        SMOKING, NONSMOKING, KING, DUALQUEEN, SUITE
     }
     
 }

@@ -1,13 +1,7 @@
-import java.io.FileReader;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
-
-import com.opencsv.bean.CsvToBeanBuilder;
-
-import javafx.util.converter.LocalDateStringConverter;
 
 public class Main 
 {
@@ -20,7 +14,7 @@ public class Main
         Scanner scanner = new Scanner(System.in);
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
-        formatter = formatter.withLocale(Locale.US);  // Locale specifies human language for translating, and cultural norms for lowercase/uppercase and abbreviations and such. Example: Locale.US or Locale.CANADA_FRENCH
+        formatter = formatter.withLocale(Locale.US);  
         
         
         System.out.println("Enter customer first name\n");
@@ -41,10 +35,11 @@ public class Main
 
         Customer cust = new Customer(fn, ln, em, add, formatted_date);
         System.out.println(cust.toString());
-        CSVUtil.loadCustomerData();
-        CSVUtil.printList(); 
+        Customer.loadCustomerData();
+        Customer.printCustomerData();
         Customer.addCustomer(cust);
-        CSVUtil.saveCustomerData();
+        Customer.saveCustomerData();
+        Customer.printCustomerData();;
 
 
         
