@@ -1,7 +1,10 @@
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
@@ -115,32 +118,50 @@ public class Customer
     //variable which stores customer data which is read from file
     private static List<String[]> customer_data = null;
 
+    //list which holds all customers
+    private static List<Customer> customers = new ArrayList<Customer>();
+
     public static void addCustomer(Customer customer)
     {
-        if(isComplete(customer) == true)
-        {
-            String[] temp = {customer.first_name, customer.last_name, customer.address, customer.email, customer.birthday.toString()};
-            customer_data.add(temp);
-        }
+        
+        customers.add(customer);
     }
 
    //loads customer data from file and stores all info into List<String[]>
    //this prevents reading/writing to file consistently.
    public static void loadCustomerData()
    {
-      try 
-      {
-         //create instance of reader
-         CSVReader reader = new CSVReaderBuilder(new FileReader("src\\customerdata.csv")).build();
+        Customer cust = new Customer();
+        try 
+        {
+            //create instance of reader
+            CSVReader reader = new CSVReaderBuilder(new FileReader("src\\customerdata.csv")).build();
 
-         //store all contents of file into a List<String[]>
-         customer_data = reader.readAll();
-         
-      } 
-      catch (Exception e) 
-      {
-         System.err.println(e.getMessage());
-      }
+            //store all contents of file into a List<String[]>
+            customer_data = reader.readAll();
+
+            //the following adds the contents of customer_data into a list of customers for easy manipulation later
+            //loop through all String[] entries within List<String[]>
+            for(String[] array : customer_data) 
+            {
+                cust.setFirstName(array[0]);
+                cust.setLastName(array[1]);
+                cust.setAddress(array[2]);
+                cust.setEmail(array[3]);
+
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                formatter = formatter.withLocale(Locale.US);
+                LocalDate formatted_date = LocalDate.parse(array[4], formatter);
+
+                cust.setBirthday(formatted_date);
+                customers.add(cust);
+
+            }
+        } 
+        catch (Exception e) 
+        {
+            System.err.println(e.getMessage());
+        }
    }
 
 
@@ -148,48 +169,42 @@ public class Customer
    //mainly for testing purposes
    public static void printCustomerData() 
    {
-      //loop through all String[] entries within List<String[]>
-      for (String[] array : customer_data) 
-      {
-         //print each element of an individual array of String[]
-          for (String element : array) 
-          {
-              System.out.print(element + " ");
-          }
-
-          // Print a new line after each array
-          System.out.println(); 
-      }
+        for(Customer cust : customers)
+        {
+            System.out.println(cust.toString());
+        }
    }
 
 
-   //saves customer data from List<String[]> array and writes it to file.
-   public static void saveCustomerData()
-   {
-      try
-      {
-         //path which should work across systems
-         String path = System.getProperty("user.dir") + "\\src\\customerdata.csv";
+    //saves customer data from List<String[]> array and writes it to file.
+    public static void saveCustomerData()
+    {
+        String[] temp = {"", "", "", "", ""};
+        try
+        {
+            //path which should work across systems
+            String path = System.getProperty("user.dir") + "\\src\\customerdata.csv";
 
-         //CSVWriter which overwrites file instead of appending to the end
-         CSVWriter writer = new CSVWriter(new FileWriter(path, false));
+            //CSVWriter which overwrites file instead of appending to the end
+            CSVWriter writer = new CSVWriter(new FileWriter(path, false));
 
-         // for loop to iterate through List<String[]> and writes all contents of String[]
-         for (String[] array : customer_data) 
-         {
-            writer.writeNext(array);
-         }
+            // for loop to iterate through List<String[]> and writes all contents of String[]
+            for(Customer c : customers)
+            {
+                temp[0] = c.getFirstName();
+                temp[1] = c.getLastName();
+                temp[2] = c.getAddress();
+                temp[3] = c.getEmail();
+                temp[4] = c.getBirthday().toString();
+                writer.writeNext(temp);
+            }
 
-         //close writer
-         writer.close();
-
-      } 
-      catch(Exception e)
-      {
-         System.err.println(e.toString());
-      }
-   }
-
-
-
+            //close writer
+            writer.close();
+        } 
+        catch(Exception e)
+        {
+            System.err.println(e.toString());
+        }
+    }
 }

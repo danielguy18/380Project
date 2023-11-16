@@ -15,7 +15,7 @@ public class Reservation
     private Room.RoomType type;
     private int room_number;
     private int confirmation;
-
+    private int occupants;
 
     public Reservation()
     {
@@ -25,9 +25,10 @@ public class Reservation
         this.room_number = -1;
         this.type = null;
         this.confirmation = -1;
+        this.occupants = 0;
     }
 
-    public Reservation(LocalDate checkInDate, LocalDate checkOutDate, Customer customer, Room.RoomType type, int room_number, int confirmation)
+    public Reservation(LocalDate checkInDate, LocalDate checkOutDate, Customer customer, Room.RoomType type, int room_number, int confirmation, int occupants)
     {
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
@@ -35,6 +36,7 @@ public class Reservation
         this.room_number = room_number;
         this.type = type;
         this.confirmation = confirmation;
+        this.occupants = occupants;
     }
 
     public int getRoomNumber()
@@ -123,6 +125,10 @@ public class Reservation
         {
             return false;
         }
+        if(rsvp.confirmation > 0)
+        {
+            return false;
+        }
         return true;
     }
 
@@ -139,10 +145,9 @@ public class Reservation
 
     }
 
-    public Reservation getRSVP(int confirmation)
+    public int getConfirmation()
     {
-        Reservation r = new Reservation();
-        return r;
+        return confirmation;
     }
 
 
@@ -154,7 +159,16 @@ public class Reservation
     {
         if(isComplete(reservation) == true)
         {
-            String[] rsvp = {reservation.checkInDate.toString(), reservation.checkOutDate.toString(), reservation.type.toString(), reservation.room_number + ""};
+            String[] rsvp = 
+            {
+                reservation.checkInDate.toString(), 
+                reservation.checkOutDate.toString(), 
+                reservation.type.toString(), 
+                reservation.room_number + "", 
+                reservation.confirmation + "", 
+                reservation.occupants + ""
+            };
+
             reservation_data.add(rsvp);
         }
     }
