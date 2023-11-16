@@ -1,16 +1,24 @@
 package app;
+
 import java.time.*;
 
-public class Customer
-{
+/**
+ * The Customer class represents a customer with a first name, last name, email,
+ * address, and birthday.
+ * 
+ * @author NAME
+ */
+public class Customer {
     private String first_name;
     private String last_name;
     private String email;
     private String address;
     private LocalDate birthday;
 
-    public Customer()
-    {
+    /**
+     * Constructs a new Customer object with null values for all fields.
+     */
+    public Customer() {
         this.first_name = null;
         this.last_name = null;
         this.email = null;
@@ -18,62 +26,111 @@ public class Customer
         this.birthday = null;
     }
 
-    public String getFirstName()
-    {
+    /**
+     * Returns the first name of the customer.
+     * 
+     * @return the first name of the customer
+     */
+    public String getFirstName() {
         return this.first_name;
     }
 
-    public void setFirstName(String fname)
-    {
+    /**
+     * Sets the first name of the customer.
+     * 
+     * @param fname the new first name of the customer
+     */
+    public void setFirstName(String fname) {
         this.first_name = fname;
     }
 
-    public String getLastName()
-    {
+    /**
+     * Returns the last name of the customer.
+     * 
+     * @return the last name of the customer
+     */
+    public String getLastName() {
         return this.last_name;
     }
 
-    public void setLastName(String lname)
-    {
+    /**
+     * Sets the last name of the customer.
+     * 
+     * @param lname the new last name of the customer
+     */
+    public void setLastName(String lname) {
         this.last_name = lname;
     }
 
-    public String getEmail()
-    {
+    /**
+     * Returns the email address of the customer.
+     * 
+     * @return the email address of the customer
+     */
+    public String getEmail() {
         return this.email;
     }
 
-    public void setEmail(String email)
-    {
+    /**
+     * Sets the email address of the customer.
+     * 
+     * @param email the new email address of the customer
+     */
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    public String getAddress()
-    {
+    /**
+     * Returns the address of the customer.
+     * 
+     * @return the address of the customer
+     */
+    public String getAddress() {
         return this.address;
     }
 
-    public void setAddress(String address)
-    {
+    /**
+     * Sets the address of the customer.
+     * 
+     * @param address the new address of the customer
+     */
+    public void setAddress(String address) {
         this.address = address;
     }
 
-    public LocalDate getBirthday()
-    {
+    /**
+     * Returns the birthday of the customer.
+     * 
+     * @return the birthday of the customer
+     */
+    public LocalDate getBirthday() {
         return this.birthday;
     }
 
-    public void setBirthday(LocalDate bday)
-    {
+    /**
+     * Sets the birthday of the customer.
+     * 
+     * @param bday the new birthday of the customer
+     */
+    public void setBirthday(LocalDate bday) {
         this.birthday = bday;
     }
 
-    public String toString()
-    {
-        String name = this.first_name + " " + this.last_name + "\n" + this.getEmail() + "\n" + this.birthday.toString() + "\n" + this.address;
+    /**
+     * Returns a string representation of the customer, including their full name,
+     * email, birthday, and address. The string representation is formatted as
+     * "{@link #first_name} {@link #last_name}<br></br>
+     * {@link #email}<br></br>
+     * {@link #birthday}<br></br>
+     * {@link #address}"
+     * 
+     * @return a string representation of the customer
+     * 
+     */
+    public String toString() {
+        String name = this.first_name + " " + this.last_name + "\n" + this.getEmail() + "\n" + this.birthday.toString()
+                + "\n" + this.address;
         return name;
-        
     }
-
 
 }
