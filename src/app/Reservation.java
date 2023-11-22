@@ -1,170 +1,267 @@
 package app;
-
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Random;
 
-/**
- * The Reservation class represents a reservation made by a customer for a hotel
- * room.
- * It contains information about the check-in and check-out dates, the customer,
- * and the room number.
- * @author NAME
- */
-public class Reservation {
+import com.opencsv.CSVReader;
+import com.opencsv.CSVReaderBuilder;
+import com.opencsv.CSVWriter;
+
+import app.Room.RoomType;
+
+public class Reservation
+{
+    private String confirmation_code;
     private LocalDate checkInDate;
     private LocalDate checkOutDate;
     private Customer customer;
+    private Room.RoomType type;
     private int room_number;
+    private int occupants;
 
-    /**
-     * Default constructor for Reservation class.
-     * Initializes all fields to null or -1.
-     */
-    public Reservation() {
+    public Reservation()
+    {
+        this.confirmation_code = generateConfirmationCode();
         this.checkInDate = null;
         this.checkOutDate = null;
         this.customer = null;
         this.room_number = -1;
+        this.type = null;
+        this.occupants = 0;
     }
 
-    /**
-     * Constructor for Reservation class.
-     * Initializes all fields to the specified values.
-     * 
-     * @param checkInDate  The check-in date for the reservation.
-     * @param checkOutDate The check-out date for the reservation.
-     * @param customer     The customer who made the reservation.
-     * @param room_number  The room number for the reservation.
-     */
-    public Reservation(LocalDate checkInDate, LocalDate checkOutDate, Customer customer, int room_number) {
+    public Reservation(LocalDate checkInDate, LocalDate checkOutDate, Customer customer, Room.RoomType type, int room_number, int occupants)
+    {
+        this.confirmation_code = generateConfirmationCode();
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
         this.customer = customer;
         this.room_number = room_number;
+        this.type = type;
+        this.occupants = occupants;
     }
 
-    /**
-     * Returns the room number for the reservation.
-     * 
-     * @return The room number for the reservation.
-     */
-    public int getRoomNumber() {
+    public int getRoomNumber()
+    {
         return this.room_number;
     }
 
-    /**
-     * Sets the room number for the reservation.
-     * 
-     * @param room_number The room number for the reservation.
-     */
-    public void setRoomNumber(int room_number) {
+    public void setRoomNumber(int room_number)
+    {
         this.room_number = room_number;
     }
 
-    /**
-     * Returns the customer who made the reservation.
-     * 
-     * @return The customer who made the reservation.
-     */
-    public Customer getCustomer() {
+    public Customer getCustomer()
+    {
         return this.customer;
     }
 
-    /**
-     * Sets the customer who made the reservation.
-     * 
-     * @param customer The customer who made the reservation.
-     */
-    public void setCustomer(Customer customer) {
+    public void setCustomer(Customer customer)
+    {
         this.customer = customer;
     }
 
-    /**
-     * Returns the check-in date for the reservation.
-     * 
-     * @return The check-in date for the reservation.
-     */
-    public LocalDate getCheckInDate() {
+    public LocalDate getCheckInDate()
+    {
         return this.checkInDate;
     }
 
-    /**
-     * Sets the check-in date for the reservation.
-     * 
-     * @param date The check-in date for the reservation.
-     */
-    public void setCheckInDate(LocalDate date) {
+    public void setCheckInDate(LocalDate date)
+    {
         this.checkInDate = date;
     }
 
-    /**
-     * Returns the check-out date for the reservation.
-     * 
-     * @return The check-out date for the reservation.
-     */
-    public LocalDate getCheckOutDate() {
+    public LocalDate getCheckOutDate()
+    {
         return this.checkOutDate;
     }
 
-    /**
-     * Sets the check-out date for the reservation.
-     * 
-     * @param date The check-out date for the reservation.
-     */
-    public void setCheckOutDate(LocalDate date) {
+    public void setCheckOutDate(LocalDate date)
+    {
         this.checkOutDate = date;
     }
 
-    /**
-     * Checks if the reservation is complete.
-     * A reservation is considered complete if it has a customer, room number,
-     * check-in date, and check-out date.
-     * 
-     * @param rsvp The reservation to check.
-     * @return True if the reservation is complete, false otherwise.
-     */
-    public boolean isComplete(Reservation rsvp) {
-        if (rsvp.customer == null) {
+    public Room.RoomType getRoomType()
+    {
+        return this.type;
+    }
+
+    public void setRoomType(Room.RoomType type)
+    {
+        this.type = type;
+    }
+
+    public String getConfirmationCode()
+    {
+        return this.confirmation_code;
+    }
+
+    public static boolean isComplete(Reservation rsvp)
+    {
+        if(rsvp.customer == null)
+        {
             return false;
         }
-        if (rsvp.room_number == -1) {
+        if(rsvp.room_number == -1)
+        {
             return false;
         }
-        if (rsvp.checkInDate == null) {
+        if(rsvp.checkInDate == null)
+        {
             return false;
         }
-        if (rsvp.checkOutDate == null) {
+        if(rsvp.checkOutDate == null)
+        {
+            return false;
+        }
+        if(rsvp.type == null)
+        {
+            return false;
+        }
+        if(rsvp.confirmation_code != null)
+        {
             return false;
         }
         return true;
     }
 
-    /**
-     * Saves the reservation to a file.
-     * 
-     * @param rsvp The reservation to save.
-     * @return The confirmation number for the reservation, or 0 if the reservation
-     *         is not complete.
-     */
-    public int saveReservation(Reservation rsvp) {
-        int confirmation = -1;
-        if (!(isComplete(rsvp) == true)) {
-            return 0;
+    public static Reservation getReservation(String code)
+    {
+        for(Reservation temp : reservations)
+        {
+            if(temp.confirmation_code == code)
+            {
+                return temp;
+            }
         }
-
-        return confirmation;
-        // TODO save to file
-
+        return null;
     }
 
-    /**
-     * Retrieves a reservation with the specified confirmation number.
-     * 
-     * @param confirmation The confirmation number for the reservation to retrieve.
-     * @return The reservation with the specified confirmation number.
-     */
-    // TODO
-    public Reservation getRSVP(int confirmation) {
-        Reservation r = new Reservation();
-        return r;
+
+
+
+    private static List<String[]> reservation_data = null;
+
+    private static List<Reservation> reservations = new ArrayList<Reservation>();
+
+    public static void addReservation(Reservation reservation)
+    {
+        if(isComplete(reservation) == true)
+        {
+            String[] rsvp = 
+            {
+                reservation.confirmation_code,
+                reservation.checkInDate.toString(), 
+                reservation.checkOutDate.toString(), 
+                reservation.type.toString(), 
+                reservation.room_number + "", 
+                reservation.occupants + ""
+            };
+
+            reservation_data.add(rsvp);
+        }
+    }
+
+    //loads reservation data from file and stores all info into List<String[]>
+    //this prevents reading/writing to file consistently.
+    public static void loadReservationData()
+    {
+        try 
+        {
+            Reservation rsvp = new Reservation();
+            //create instance of reader
+            CSVReader reader = new CSVReaderBuilder(new FileReader("src\\reservationdata.csv")).build();
+
+            //store all contents of file into a List<String[]>
+            reservation_data = reader.readAll();
+
+            //the following adds the contents of customer_data into a list of customers for easy manipulation later
+            //loop through all String[] entries within List<String[]>
+            for(String[] array : reservation_data) 
+            {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                formatter = formatter.withLocale(Locale.US);
+                LocalDate formatted_date = LocalDate.parse(array[1], formatter);
+
+                rsvp.confirmation_code = array[0];
+                rsvp.setCheckInDate(formatted_date);
+                formatted_date = LocalDate.parse(array[2], formatter);
+                rsvp.setCheckOutDate(formatted_date);
+                rsvp.setCustomer(Customer.getCustomer(array[3]));
+                rsvp.setRoomNumber(Integer.parseInt(array[4]));
+                rsvp.setRoomType(Room.RoomType.valueOf(array[5]));
+            }
+        } 
+        catch (Exception e) 
+        {
+            System.err.println(e.getMessage());
+        }
+    }
+
+
+    //prints contents of the List<String[]> array
+    //mainly for testing purposes
+    public static void printReservationData() 
+    {
+        //loop through all String[] entries within List<String[]>
+        for (String[] array : reservation_data) 
+        {
+            //print each element of an individual array of String[]
+            for (String element : array) 
+            {
+                System.out.print(element + " ");
+            }
+
+            // Print a new line after each array
+            System.out.println(); 
+        }
+    }
+
+    //saves reservation data from List<String[]> array and writes it to file.
+    public static void saveReservationData()
+    {
+        try
+        {
+            //path which should work across systems
+            String path = System.getProperty("user.dir") + "\\src\\reservationdata.csv";
+
+            //CSVWriter which overwrites file instead of appending to the end
+            CSVWriter writer = new CSVWriter(new FileWriter(path, false));
+
+            // for loop to iterate through List<String[]> and writes all contents of String[]
+            for (String[] array : reservation_data) 
+            {
+                writer.writeNext(array);
+            }
+
+            //close writer
+            writer.close();
+
+        } 
+        catch(Exception e)
+        {
+            System.err.println(e.toString());
+        }
+    }
+
+
+    public static String generateConfirmationCode() 
+    {
+        String characters = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // Excludes confusing characters
+        StringBuilder code = new StringBuilder();
+        Random random = new Random();
+
+        for (int i = 0; i < 10; i++) 
+        {
+            int index = random.nextInt(characters.length());
+            code.append(characters.charAt(index));
+        }
+
+        return code.toString();
     }
 }
