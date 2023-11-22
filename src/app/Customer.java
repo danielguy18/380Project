@@ -122,7 +122,7 @@ public class Customer
 
     
     /** 
-     * @return LocalDate birthdate of customer
+     * @return LocalDate birthday of customer
      */
     public LocalDate getBirthday()
     {
@@ -131,7 +131,7 @@ public class Customer
 
     
     /** 
-     * @param birthday of customer
+     * @param LocalDate birthday of customer
      */
     public void setBirthday(LocalDate bday)
     {
@@ -149,8 +149,8 @@ public class Customer
 
     
     /** 
-     * @param Inputs customer data and returnd if the customer has a complete profile.
-     * @return if the customer is complete.
+     * @param Customer -customer data and returnd if the customer has a complete profile.
+     * @return if the customer object is complete.
      */
     public static boolean isComplete(Customer customer)
     {
