@@ -32,6 +32,7 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -122,6 +123,9 @@
                   <Image url="@../../../hotel%20guests.jpg" />
                </image>
             </ImageView>
+            <Button layoutX="69.0" layoutY="263.0" mnemonicParsing="false" text="Staff Information" />
+            <Button layoutX="254.0" layoutY="263.0" mnemonicParsing="false" text="Managers Information" />
+            <Button layoutX="473.0" layoutY="263.0" mnemonicParsing="false" text="Guest Information" />
       </children>
     </AnchorPane>
   </children>
