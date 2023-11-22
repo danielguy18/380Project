@@ -5,6 +5,14 @@
             "name": "Main",
             "request": "launch",
             "mainClass": "app.Main",
+            "projectName": "380Test-1_c2c0abb6",
+            "vmArgs": "--module-path \"\\Users\\danie\\OneDrive\\Documents\\GitHub\\380Test-1\\lib\\javafx-sdk-21\\lib\" --add-modules javafx.controls,javafx.fxml"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "app.Main",
             "projectName": "380Project_daddb4ca",
             "vmArgs": "--module-path \"/Users/zel/Documents/Java/javafx-sdk-21.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
         }
