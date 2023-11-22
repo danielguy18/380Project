@@ -3,8 +3,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.Scanner;
 
-import app.Customer;
-
 public class Main 
 {
 
@@ -41,7 +39,7 @@ public class Main
         Customer.printCustomerData();
         Customer.addCustomer(cust);
         Customer.saveCustomerData();
-        Customer.printCustomerData();
+        Customer.printCustomerData();;
 
 
         
