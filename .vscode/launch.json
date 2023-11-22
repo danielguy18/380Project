@@ -1,6 +1,6 @@
 {
     "configurations": [
-        {
+        {//Daniel's Laptop Launch.json
             "type": "java",
             "name": "Main",
             "request": "launch",
@@ -8,7 +8,7 @@
             "projectName": "380Test-1_c2c0abb6",
             "vmArgs": "--module-path \"\\Users\\danie\\OneDrive\\Documents\\GitHub\\380Test-1\\lib\\javafx-sdk-21\\lib\" --add-modules javafx.controls,javafx.fxml"
         },
-        {
+        {//Zel's Macbook Launch.json
             "type": "java",
             "name": "Main",
             "request": "launch",
