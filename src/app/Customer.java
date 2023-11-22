@@ -212,7 +212,7 @@ public class Customer
         try 
         {
             //create instance of reader
-            CSVReader reader = new CSVReaderBuilder(new FileReader("src\\customerdata.csv")).build();
+            CSVReader reader = new CSVReaderBuilder(new FileReader("lib\\csv\\customerdata.csv")).build();
 
             //store all contents of file into a List<String[]>
             customer_data = reader.readAll();
@@ -259,7 +259,7 @@ public class Customer
         try
         {
             //path which should work across systems
-            String path = System.getProperty("user.dir") + "\\src\\customerdata.csv";
+            String path = System.getProperty("user.dir") + "\\lib\\csv\\customerdata.csv";
 
             //CSVWriter which overwrites file instead of appending to the end
             CSVWriter writer = new CSVWriter(new FileWriter(path, false));

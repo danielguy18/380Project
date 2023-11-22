@@ -175,7 +175,7 @@ public class Reservation
         {
             Reservation rsvp = new Reservation();
             //create instance of reader
-            CSVReader reader = new CSVReaderBuilder(new FileReader("src\\reservationdata.csv")).build();
+            CSVReader reader = new CSVReaderBuilder(new FileReader("lib\\csv\\reservationdata.csv")).build();
 
             //store all contents of file into a List<String[]>
             reservation_data = reader.readAll();
@@ -228,7 +228,7 @@ public class Reservation
         try
         {
             //path which should work across systems
-            String path = System.getProperty("user.dir") + "\\src\\reservationdata.csv";
+            String path = System.getProperty("user.dir") + "\\lib\\csv\\reservationdata.csv";
 
             //CSVWriter which overwrites file instead of appending to the end
             CSVWriter writer = new CSVWriter(new FileWriter(path, false));
