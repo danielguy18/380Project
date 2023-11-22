@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="493.0" prefWidth="755.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainSceneController">
+   <children>
+      <Label fx:id="headerid" layoutX="252.0" layoutY="14.0" prefHeight="101.0" prefWidth="252.0" text="Z.A.D.B Hotels">
+         <font>
+            <Font size="40.0" />
+         </font></Label>
+      <TextField fx:id="txTitle" layoutX="92.0" layoutY="102.0" prefHeight="25.0" prefWidth="507.0" />
+      <Button layoutX="343.0" layoutY="443.0" mnemonicParsing="false" onAction="#btnOKClicked" text="OKButton" />
+      <ImageView fx:id="img_id_1" fitHeight="150.0" fitWidth="200.0" layoutX="51.0" layoutY="156.0" onMouseClicked="#img_id_1_clicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../lib/Hotel_Caesars_Images/Caesars_Palace_1.jpeg" />
+         </image>
+      </ImageView>
+      <Label layoutX="51.0" layoutY="130.0" prefHeight="26.0" prefWidth="101.0" text="Option #1" />
+      <Label layoutX="51.0" layoutY="289.0" text="Caesar's Palace" />
+      <Label layoutX="51.0" layoutY="306.0" text="Rating:  #/10" />
+      <Label layoutX="51.0" layoutY="323.0" text="\$350 per night" />
+      <ImageView fx:id="img_id_2" fitHeight="150.0" fitWidth="200.0" layoutX="279.0" layoutY="156.0" onMouseClicked="#img_id_2_clicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../lib/Hotel_Bellagio_Images/Bellagio_Image_1.jpeg" />
+         </image>
+      </ImageView>
+      <Label layoutX="279.0" layoutY="135.0" text="Option #2" />
+      <Label layoutX="279.0" layoutY="289.0" text="Bellagio" />
+      <Label layoutX="279.0" layoutY="306.0" text="Rating: #/10" />
+      <Label layoutX="279.0" layoutY="323.0" text="\$400 per night" />
+   </children>
+</AnchorPane>
