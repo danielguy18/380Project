@@ -1,0 +1,4 @@
+.vscode/settings.json
+.idea/
+*.iml
+lib/*.so
