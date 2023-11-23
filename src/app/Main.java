@@ -16,7 +16,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("Main.fxml")); //Change name to launch different fxml gui.
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.setTitle("380 Project Demo Scene");
