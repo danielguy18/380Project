@@ -96,6 +96,16 @@ public class Reservation
         this.type = type;
     }
 
+    public int getNumOccupants()
+    {
+        return this.occupants;
+    }
+
+    public void setNumOccupants(int num)
+    {
+        this.occupants = num;
+    }
+
     public String getConfirmationCode()
     {
         return this.confirmation_code;
@@ -164,6 +174,17 @@ public class Reservation
             };
 
             reservation_data.add(rsvp);
+        }
+    }
+
+    public static void deleteReservation(Reservation rsvp)
+    {
+        for(Reservation temp : reservations)
+        {
+            if(temp.confirmation_code == rsvp.confirmation_code)
+            {
+                reservation_data.remove(reservations.indexOf(rsvp));
+            }
         }
     }
 
