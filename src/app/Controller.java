@@ -7,6 +7,7 @@ import java.io.Reader;
 
 import javafx.fxml.FXML;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -93,4 +94,18 @@ public class Controller {
 
    }
 
+   /** 
+    * This Function moves the Screen to "Information's" Page.
+    * @author Zelgehai Zahid
+    * @param event the event that triggers the button click
+    */
+    @FXML
+    private Label mainSceneTitle;
+    @FXML
+    void btnInformationClicked(ActionEvent event) {
+      Stage mainWindow = (Stage) mainSceneTitle.getScene().getWindow();
+      mainSceneTitle.setText("testing Button");
+    }
+   
+    
 }

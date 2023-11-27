@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Controller">
   <children>
@@ -52,8 +53,12 @@
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
-            <ScrollBar layoutX="32.0" layoutY="28.0" orientation="VERTICAL" />
-            <ListView editable="true" fixedCellSize="3.0" layoutX="62.0" layoutY="14.0" prefHeight="200.0" prefWidth="384.0" />
+            <Label id="mainSceneTitle" fx:id="mainSceneTitle" layoutX="162.0" layoutY="14.0" prefHeight="17.0" prefWidth="317.0" text="WELCOME TO ZADB Hotel" underline="true">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Button layoutX="135.0" layoutY="271.0" mnemonicParsing="false" onAction="#btnInformationClicked" text="Information" />
          </children></AnchorPane>
   </children>
 </VBox>
