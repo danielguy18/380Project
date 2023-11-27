@@ -3,12 +3,17 @@ package app;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.Reader;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import java.util.regex.Matcher;
@@ -18,7 +23,10 @@ import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.csv.CSVRecord;
 
 public class Controller {
-
+   private Stage stage;
+   private Scene scene;
+   private Parent root;
+   
    Alert alert = new Alert(Alert.AlertType.NONE);
    private File csvFile;
 
@@ -102,9 +110,14 @@ public class Controller {
     @FXML
     private Label mainSceneTitle;
     @FXML
-    void btnInformationClicked(ActionEvent event) {
-      Stage mainWindow = (Stage) mainSceneTitle.getScene().getWindow();
-      mainSceneTitle.setText("testing Button");
+    void btnInformationClicked(ActionEvent event) throws IOException {
+      Parent root = FXMLLoader.load(getClass().getResource("InformationPageDraft.fxml"));
+      stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+      scene = new Scene(root);
+      stage.setScene(scene);
+      stage.show();
+      //Stage mainWindow = (Stage) mainSceneTitle.getScene().getWindow();
+      //mainSceneTitle.setText("testing Button");
     }
    
     
