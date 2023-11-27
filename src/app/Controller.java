@@ -119,6 +119,14 @@ public class Controller {
       //Stage mainWindow = (Stage) mainSceneTitle.getScene().getWindow();
       //mainSceneTitle.setText("testing Button");
     }
+    @FXML
+    void btnRoomsClicked(ActionEvent event) throws IOException {
+      Parent root = FXMLLoader.load(getClass().getResource("RoomsScene.fxml"));
+      stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+      scene = new Scene(root);
+      stage.setScene(scene);
+      stage.show();
+    }
    
     
 }

@@ -11,7 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class InformationPageController {
+public class RoomsSceneController {
     private Stage stage;
     private Scene scene;
     private Parent root;
