@@ -96,6 +96,14 @@ public class Reservation
         this.type = type;
     }
 
+    public void setRoomType(String s)
+    {
+        if(s.equalsIgnoreCase("queen"))
+        this.type = RoomType.QUEEN;
+        if(s.equalsIgnoreCase("king"))
+        this.type = RoomType.KING;
+    }
+
     public int getNumOccupants()
     {
         return this.occupants;
@@ -133,7 +141,7 @@ public class Reservation
         {
             return false;
         }
-        if(rsvp.confirmation_code != null)
+        if(rsvp.confirmation_code == null)
         {
             return false;
         }
@@ -161,20 +169,7 @@ public class Reservation
 
     public static void addReservation(Reservation reservation)
     {
-        if(isComplete(reservation) == true)
-        {
-            String[] rsvp = 
-            {
-                reservation.confirmation_code,
-                reservation.checkInDate.toString(), 
-                reservation.checkOutDate.toString(), 
-                reservation.type.toString(), 
-                reservation.room_number + "", 
-                reservation.occupants + ""
-            };
-
-            reservation_data.add(rsvp);
-        }
+        reservations.add(reservation);
     }
 
     public static void deleteReservation(Reservation rsvp)
@@ -194,7 +189,7 @@ public class Reservation
     {
         try 
         {
-            Reservation rsvp = new Reservation();
+           
             //create instance of reader
             CSVReader reader = new CSVReaderBuilder(new FileReader("lib\\csv\\reservationdata.csv")).build();
 
@@ -205,6 +200,7 @@ public class Reservation
             //loop through all String[] entries within List<String[]>
             for(String[] array : reservation_data) 
             {
+                Reservation rsvp = new Reservation();
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 formatter = formatter.withLocale(Locale.US);
                 LocalDate formatted_date = LocalDate.parse(array[1], formatter);
@@ -215,7 +211,10 @@ public class Reservation
                 rsvp.setCheckOutDate(formatted_date);
                 rsvp.setCustomer(Customer.getCustomer(array[3]));
                 rsvp.setRoomNumber(Integer.parseInt(array[4]));
-                rsvp.setRoomType(Room.RoomType.valueOf(array[5]));
+                rsvp.setNumOccupants(Integer.parseInt(array[5]));
+                rsvp.setRoomType(array[6]);
+
+                reservations.add(rsvp);
             }
         } 
         catch (Exception e) 
@@ -230,22 +229,28 @@ public class Reservation
     public static void printReservationData() 
     {
         //loop through all String[] entries within List<String[]>
-        for (String[] array : reservation_data) 
+        for (Reservation rsvp : reservations) 
         {
-            //print each element of an individual array of String[]
-            for (String element : array) 
-            {
-                System.out.print(element + " ");
-            }
-
-            // Print a new line after each array
-            System.out.println(); 
+            System.out.println(rsvp.toString());
         }
     }
+
+    public static void printListString()
+   {
+        for(String[] s : reservation_data)
+        {
+            
+            for(String c : s)
+            {
+                System.out.println(c);
+            }
+        }
+   }
 
     //saves reservation data from List<String[]> array and writes it to file.
     public static void saveReservationData()
     {
+        String[] temp = {"", "", "", "", "", "", ""};
         try
         {
             //path which should work across systems
@@ -255,9 +260,16 @@ public class Reservation
             CSVWriter writer = new CSVWriter(new FileWriter(path, false));
 
             // for loop to iterate through List<String[]> and writes all contents of String[]
-            for (String[] array : reservation_data) 
+            for(Reservation c : reservations)
             {
-                writer.writeNext(array);
+                temp[0] = c.confirmation_code;
+                temp[1] = c.getCheckInDate().toString();
+                temp[2] = c.getCheckOutDate().toString();
+                temp[3] = c.getCustomer().getCustomerID();
+                temp[4] = String.valueOf(c.getRoomNumber());
+                temp[5] = String.valueOf(c.getNumOccupants());
+                temp[6] = c.getRoomType().toString();
+                writer.writeNext(temp);
             }
 
             //close writer
@@ -268,6 +280,17 @@ public class Reservation
         {
             System.err.println(e.toString());
         }
+    }
+
+    public String toString()
+    {
+        return  "\nRSVP code: " + this.confirmation_code +
+                "\nCheck In: " + this.checkInDate.toString() +
+                "\nCheck Out: " + this.checkOutDate.toString() +
+                "\nCustomer ID: " + this.customer.getCustomerID() +
+                "\nRoom Number: " + this.room_number + 
+                "\nOccupants: " + this.occupants + 
+                "\nRoom Type: " + this.type.toString();
     }
 
 

@@ -4,11 +4,11 @@ public class Room
 
     enum RoomType
     {
-        SMOKING, NONSMOKING, KING, DUALQUEEN, SUITE
+        QUEEN, KING
     }
 
 
-    private int room_number;
-    private RoomType type;
+    //private int room_number;
+    //private RoomType type;
     
 }

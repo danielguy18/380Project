@@ -39,14 +39,20 @@ public class Main extends Application {
         {
             case 1:
             launch(args);
-            scanner.close();
+            selection = -1;
             break;
 
             case 2:
             console();
-            scanner.close();
+            selection = -1;
+            break;
+
+            default:
+            selection = -1;
             break;
         }
+        scanner.close();
+        return;
     }
 
 
@@ -81,7 +87,6 @@ public class Main extends Application {
 
         System.out.println(cust.toString());
         Customer.loadCustomerData();
-        Customer.printCustomerData();
         Customer.addCustomer(cust);
         Customer.saveCustomerData();
         Customer.printCustomerData();
@@ -90,39 +95,49 @@ public class Main extends Application {
         rsvp.setCustomer(cust);
 
         System.out.println("Please choose room type:");
-        System.out.println("1. Dual Queen\n2.King\n3.Suite");
+        System.out.println("1.Queen\n2.King");
 
         int selection = 0;
         selection = scanner.nextInt();
         switch(selection)
         {
             case 1:
-            rsvp.setRoomType(RoomType.DUALQUEEN);
+            rsvp.setRoomType(RoomType.QUEEN);
             break;
 
             case 2:
             rsvp.setRoomType(RoomType.KING);
             break;
-
-            case 3:
-            rsvp.setRoomType(RoomType.SUITE);
-            break;
         }
         selection = 0;
+
+        String checkIn, checkOut;
 
         System.out.println("Please enter number of occupants: (1-4)");
         selection = scanner.nextInt();
         rsvp.setNumOccupants(selection);
+        scanner.nextLine();
 
         //assign room number
-        System.out.println("Please enter desired check-in date:");
 
-        System.out.println("Please enter desired check-out date:");
+        System.out.println("Please enter desired check-in date: (MM-DD-YYYY)");
+        checkIn = scanner.nextLine();
+        formatted_date = LocalDate.parse(checkIn, formatter);
+        rsvp.setCheckInDate(formatted_date);
+
+        System.out.println("Please enter desired check-out date: (MM-DD-YYYY)");
+        checkOut = scanner.nextLine();
+        formatted_date = LocalDate.parse(checkOut, formatter);
+        rsvp.setCheckOutDate(formatted_date);
+
+        rsvp.setRoomNumber(5);
+
+        Reservation.loadReservationData();
+        Reservation.addReservation(rsvp);
+        Reservation.saveReservationData();
+        Reservation.printReservationData();
 
         scanner.close();
-
-
-        
 
         return;
     }

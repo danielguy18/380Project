@@ -204,11 +204,15 @@ public class Customer
         return null;
     }
 
+    public String getCustomerID()
+    {
+        return this.UID;
+    }
+
    //loads customer data from file and stores all info into List<String[]>
    //this prevents reading/writing to file consistently.
    public static void loadCustomerData()
    {
-        Customer cust = new Customer();
         try 
         {
             //create instance of reader
@@ -219,19 +223,21 @@ public class Customer
 
             //the following adds the contents of customer_data into a list of customers for easy manipulation later
             //loop through all String[] entries within List<String[]>
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            formatter = formatter.withLocale(Locale.US);
             for(String[] array : customer_data) 
             {
+                Customer cust = new Customer();
                 cust.UID = array[0];
                 cust.setFirstName(array[1]);
                 cust.setLastName(array[2]);
                 cust.setAddress(array[3]);
                 cust.setEmail(array[4]);
-
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                formatter = formatter.withLocale(Locale.US);
                 LocalDate formatted_date = LocalDate.parse(array[5], formatter);
 
                 cust.setBirthday(formatted_date);
+
                 customers.add(cust);
             }
         } 
@@ -248,6 +254,18 @@ public class Customer
         for(Customer cust : customers)
         {
             System.out.println(cust.toString());
+        }
+   }
+
+   public static void printListString()
+   {
+        for(String[] s : customer_data)
+        {
+            
+            for(String c : s)
+            {
+                System.out.println(c);
+            }
         }
    }
 
@@ -274,6 +292,7 @@ public class Customer
                 temp[4] = c.getEmail();
                 temp[5] = c.getBirthday().toString();
                 writer.writeNext(temp);
+                
             }
 
             //close writer
