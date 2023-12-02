@@ -271,6 +271,7 @@ public class Customer
 
 
     //saves customer data from List<String[]> array and writes it to file.
+    
     public static void saveCustomerData()
     {
         String[] temp = {"", "", "", "", "", ""};
@@ -308,7 +309,7 @@ public class Customer
     /** 
      * @return String of the customers UID
      */
-    public static String generateUID() 
+    public String generateUID() 
     {
         String characters = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // Excludes confusing characters
         StringBuilder code = new StringBuilder();

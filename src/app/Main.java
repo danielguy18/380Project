@@ -60,6 +60,43 @@ public class Main extends Application {
     {
         LocalDate date = LocalDate.now();
         System.out.println(date.toString());
+        System.out.println("\n\nSelect an option\n1. New Customer\n2.New Reservation\n3.View All Rooms");
+        Scanner scanner = new Scanner(System.in);
+        int selection = 0;
+        selection = scanner.nextInt();
+
+        switch(selection)
+        {
+
+            case 1:
+            newCustomer();
+            selection = 0;
+            break;
+
+            case 2:
+            newReservation();
+            selection = 0;
+            break;
+
+            case 3:
+            viewAllRooms();
+            break;
+            default:
+            selection = 0;
+            break;
+        }
+        scanner.close();
+        return;
+    }
+
+    private static void viewAllRooms() 
+    {
+        
+    }
+    public static void newCustomer()
+    {
+        LocalDate date = LocalDate.now();
+        System.out.println(date.toString());
         Scanner scanner = new Scanner(System.in);
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
@@ -90,14 +127,26 @@ public class Main extends Application {
         Customer.addCustomer(cust);
         Customer.saveCustomerData();
         Customer.printCustomerData();
+        scanner.close();
+        return;
+    }
+
+    public static void newReservation()
+    {
+        Scanner scanner = new Scanner(System.in);
+        int selection = 0;
+        
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+        formatter = formatter.withLocale(Locale.US);  
+        
 
         Reservation rsvp = new Reservation();
+        Customer cust = new Customer();
         rsvp.setCustomer(cust);
 
         System.out.println("Please choose room type:");
         System.out.println("1.Queen\n2.King");
 
-        int selection = 0;
         selection = scanner.nextInt();
         switch(selection)
         {
@@ -112,6 +161,7 @@ public class Main extends Application {
         selection = 0;
 
         String checkIn, checkOut;
+        LocalDate formatted_date;
 
         System.out.println("Please enter number of occupants: (1-4)");
         selection = scanner.nextInt();
@@ -136,9 +186,6 @@ public class Main extends Application {
         Reservation.addReservation(rsvp);
         Reservation.saveReservationData();
         Reservation.printReservationData();
-
         scanner.close();
-
-        return;
     }
 }

@@ -19,7 +19,7 @@ public class Reservation
     private String confirmation_code;
     private LocalDate checkInDate;
     private LocalDate checkOutDate;
-    private Customer customer;
+    private String customer_uid;
     private Room.RoomType type;
     private int room_number;
     private int occupants;
@@ -29,7 +29,7 @@ public class Reservation
         this.confirmation_code = generateConfirmationCode();
         this.checkInDate = null;
         this.checkOutDate = null;
-        this.customer = null;
+        this.customer_uid = null;
         this.room_number = -1;
         this.type = null;
         this.occupants = 0;
@@ -40,7 +40,7 @@ public class Reservation
         this.confirmation_code = generateConfirmationCode();
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
-        this.customer = customer;
+        this.customer_uid = customer.getCustomerID();
         this.room_number = room_number;
         this.type = type;
         this.occupants = occupants;
@@ -58,12 +58,12 @@ public class Reservation
 
     public Customer getCustomer()
     {
-        return this.customer;
+        return Customer.getCustomer(customer_uid);
     }
 
     public void setCustomer(Customer customer)
     {
-        this.customer = customer;
+        this.customer_uid = customer.getCustomerID();
     }
 
     public LocalDate getCheckInDate()
@@ -121,7 +121,7 @@ public class Reservation
 
     public static boolean isComplete(Reservation rsvp)
     {
-        if(rsvp.customer == null)
+        if(rsvp.customer_uid == null)
         {
             return false;
         }
@@ -287,7 +287,7 @@ public class Reservation
         return  "\nRSVP code: " + this.confirmation_code +
                 "\nCheck In: " + this.checkInDate.toString() +
                 "\nCheck Out: " + this.checkOutDate.toString() +
-                "\nCustomer ID: " + this.customer.getCustomerID() +
+                "\nCustomer ID: " + this.customer_uid +
                 "\nRoom Number: " + this.room_number + 
                 "\nOccupants: " + this.occupants + 
                 "\nRoom Type: " + this.type.toString();
