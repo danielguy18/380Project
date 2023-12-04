@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
+import org.junit.Test;
+
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import com.opencsv.CSVWriter;
@@ -202,6 +204,12 @@ public class Customer
             }
         }
         return null;
+    }
+
+     
+    public void setCustomer(String id)
+    {
+        this.UID = id;
     }
 
     public String getCustomerID()

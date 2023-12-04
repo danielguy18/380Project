@@ -305,7 +305,6 @@ public class Reservation
             int index = random.nextInt(characters.length());
             code.append(characters.charAt(index));
         }
-
         return code.toString();
     }
 }

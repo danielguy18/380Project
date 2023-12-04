@@ -5,6 +5,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.Scanner;
 
+import org.junit.Test;
+
 import app.Room.RoomType;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -60,7 +62,7 @@ public class Main extends Application {
     {
         LocalDate date = LocalDate.now();
         System.out.println(date.toString());
-        System.out.println("\n\nSelect an option\n1. New Customer\n2.New Reservation\n3.View All Rooms");
+        System.out.println("\n\nSelect an option\n1. New Customer\n2. New Reservation\n3. View All Rooms");
         Scanner scanner = new Scanner(System.in);
         int selection = 0;
         selection = scanner.nextInt();
@@ -91,8 +93,10 @@ public class Main extends Application {
 
     private static void viewAllRooms() 
     {
-        
+        Room.loadRoomData();
+        Room.printRoomData();
     }
+
     public static void newCustomer()
     {
         LocalDate date = LocalDate.now();
@@ -127,6 +131,7 @@ public class Main extends Application {
         Customer.addCustomer(cust);
         Customer.saveCustomerData();
         Customer.printCustomerData();
+        
         scanner.close();
         return;
     }
