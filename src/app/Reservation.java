@@ -262,7 +262,7 @@ public class Reservation
             // for loop to iterate through List<String[]> and writes all contents of String[]
             for(Reservation c : reservations)
             {
-                temp[0] = c.confirmation_code;
+                temp[0] = c.getConfirmationCode();
                 temp[1] = c.getCheckInDate().toString();
                 temp[2] = c.getCheckOutDate().toString();
                 temp[3] = c.getCustomer().getCustomerID();

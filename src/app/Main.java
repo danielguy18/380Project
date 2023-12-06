@@ -143,7 +143,6 @@ public class Main extends Application {
         
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
         formatter = formatter.withLocale(Locale.US);  
-        
 
         Reservation rsvp = new Reservation();
         Customer cust = new Customer();

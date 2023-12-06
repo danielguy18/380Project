@@ -2,11 +2,8 @@ package app;
 
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
@@ -62,10 +59,7 @@ public class Room
         return this.confirmation_code;
     }
 
-
-    
-
-    private static List<String[]> room_data = null;
+    private static List<String[]> room_data = new ArrayList<String[]>();
     private static List<Room> room_list = new ArrayList<Room>();
 
     public static void loadRoomData()
@@ -111,17 +105,17 @@ public class Room
         String info = 
             "\nRoom #: " + this.room_number + 
             "\nRoom Type: " + this.type.toString() + 
-            "\nAvailable?: " + this.available + 
+            "\nAvailable?: " + String.valueOf(this.available) + 
             "\nPrice " + this.price + 
             "\nRSVP Code: " + this.confirmation_code;
         return info;
     }
 
-    public static void saveCustomerData()
+    public static void saveRoomData()
     {
-        
+
         String[] header = {"Room #", "Type", "Available?", "Price", "RSVP Code"};
-        String[] temp = {"", "", "", "", ""};
+        
         try
         {
             //path which should work across systems
@@ -134,6 +128,7 @@ public class Room
             // for loop to iterate through List<Customer> and write to file
             for(Room r : room_list)
             {
+                String[] temp = {"", "", "", "", ""};
                 temp[0] = String.valueOf(r.getRoomNumber());
                 temp[1] = r.getRoomType().toString();
                 temp[2] = Boolean.toString(r.isAvailable());
