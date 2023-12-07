@@ -56,9 +56,14 @@ public class Reservation
         this.room_number = room_number;
     }
 
-    public Customer getCustomer()
+    public String getCustomerID()
     {
-        return Customer.getCustomer(customer_uid);
+        return this.customer_uid;
+    }
+
+    public void setCustomerID(String id)
+    {
+        this.customer_uid = id;
     }
 
     public void setCustomer(Customer customer)
@@ -189,7 +194,6 @@ public class Reservation
     {
         try 
         {
-           
             //create instance of reader
             CSVReader reader = new CSVReaderBuilder(new FileReader("lib\\csv\\reservationdata.csv")).build();
 
@@ -209,7 +213,7 @@ public class Reservation
                 rsvp.setCheckInDate(formatted_date);
                 formatted_date = LocalDate.parse(array[2], formatter);
                 rsvp.setCheckOutDate(formatted_date);
-                rsvp.setCustomer(Customer.getCustomer(array[3]));
+                rsvp.setCustomerID(array[3]);
                 rsvp.setRoomNumber(Integer.parseInt(array[4]));
                 rsvp.setNumOccupants(Integer.parseInt(array[5]));
                 rsvp.setRoomType(array[6]);
@@ -265,7 +269,7 @@ public class Reservation
                 temp[0] = c.getConfirmationCode();
                 temp[1] = c.getCheckInDate().toString();
                 temp[2] = c.getCheckOutDate().toString();
-                temp[3] = c.getCustomer().getCustomerID();
+                temp[3] = c.getCustomerID();
                 temp[4] = String.valueOf(c.getRoomNumber());
                 temp[5] = String.valueOf(c.getNumOccupants());
                 temp[6] = c.getRoomType().toString();
