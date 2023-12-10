@@ -3,6 +3,7 @@ package app;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
+import java.util.Properties;
 import java.util.Scanner;
 
 import org.junit.Test;
@@ -14,6 +15,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+
+import javax.mail.Authenticator;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
 
 public class Main extends Application {
     @Override
@@ -83,12 +88,29 @@ public class Main extends Application {
             case 3:
             viewAllRooms();
             break;
+
+            case 4: 
+            testEmail();
+            break;
+
             default:
             selection = 0;
             break;
         }
         scanner.close();
         return;
+    }
+
+    public static void testEmail()
+    {
+        String email = "";
+        System.out.println("Enter email:\n");
+        Scanner scanner = new Scanner(System.in);
+        email = scanner.nextLine();
+
+        EmailUtility.sendEmail(email, "test", "test");
+        
+        scanner.close();
     }
 
     private static void viewAllRooms() 
