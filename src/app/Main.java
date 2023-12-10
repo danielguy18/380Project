@@ -1,5 +1,8 @@
 package app;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
@@ -32,7 +35,14 @@ public class Main extends Application {
     public static void main(String[] args) 
     {
         //Inserting all Data from CSV to an Array--
-        
+        String datapath = "lib/csv/mainDatabase.csv";
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(datapath));
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            System.out.println("File csv mainDatapath not Found");
+            e.printStackTrace();
+        }
         //
 
         //Prompt user to launch GUI application or to remain in the console.
