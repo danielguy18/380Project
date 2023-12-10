@@ -8,8 +8,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
-import org.junit.Test;
-
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import com.opencsv.CSVWriter;
@@ -224,7 +222,7 @@ public class Customer
         try 
         {
             //create instance of reader
-            CSVReader reader = new CSVReaderBuilder(new FileReader("lib\\csv\\customerdata.csv")).build();
+            CSVReader reader = new CSVReaderBuilder(new FileReader("lib\\csv\\customerdata.csv")).withSkipLines(1).build();
 
             //store all contents of file into a List<String[]>
             customer_data = reader.readAll();
@@ -282,6 +280,7 @@ public class Customer
     
     public static void saveCustomerData()
     {
+        String[] header = {"Customer ID", "First Name", "Last Name", "Address", "Email", "Birthday"};
         String[] temp = {"", "", "", "", "", ""};
         try
         {
@@ -290,11 +289,12 @@ public class Customer
 
             //CSVWriter which overwrites file instead of appending to the end
             CSVWriter writer = new CSVWriter(new FileWriter(path, false));
+            writer.writeNext(header);
 
             // for loop to iterate through List<Customer> and write to file
             for(Customer c : customers)
             {
-                temp[0] = c.UID;
+                temp[0] = c.getCustomerID();
                 temp[1] = c.getFirstName();
                 temp[2] = c.getLastName();
                 temp[3] = c.getAddress();
@@ -319,7 +319,7 @@ public class Customer
      */
     public String generateUID() 
     {
-        String characters = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // Excludes confusing characters
+        String characters = "0123456789"; // Excludes confusing characters
         StringBuilder code = new StringBuilder();
         Random random = new Random();
 

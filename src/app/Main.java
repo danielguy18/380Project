@@ -3,10 +3,8 @@ package app;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
-import java.util.Properties;
 import java.util.Scanner;
 
-import org.junit.Test;
 
 import app.Room.RoomType;
 import javafx.application.Application;
@@ -15,10 +13,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
-import javax.mail.Authenticator;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
 
 public class Main extends Application {
     @Override
@@ -104,11 +98,11 @@ public class Main extends Application {
     public static void testEmail()
     {
         String email = "";
-        System.out.println("Enter email:\n");
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter email:\n");
         email = scanner.nextLine();
 
-        EmailUtility.sendEmail(email, "No cap", "thas mid");
+        EmailUtility.sendEmail(email, new Reservation());
         
         scanner.close();
     }
@@ -208,10 +202,15 @@ public class Main extends Application {
 
         rsvp.setRoomNumber(5);
 
+        System.out.println("Enter email:\n");
+        String email = scanner.nextLine();
+
         Reservation.loadReservationData();
         Reservation.addReservation(rsvp);
         Reservation.saveReservationData();
         Reservation.printReservationData();
+        
+        EmailUtility.sendEmail(email, rsvp);
         scanner.close();
     }
 }

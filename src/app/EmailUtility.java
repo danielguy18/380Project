@@ -13,11 +13,17 @@ import javax.mail.internet.MimeMessage;
 
 public class EmailUtility 
 {
-	public static void sendEmail(String toEmail, String subject, String body)
+	String body = "";
+
+	public static void sendEmail(String toEmail, Reservation rsvp)
 	{
 		final String toemail = toEmail;
         final String fromEmail = "no.reply.zadb@gmail.com"; //requires valid gmail id
 		final String password = "dsov trvn icgy ljby "; // correct password for gmail id
+
+		String subject = "CONFIRMATION CODE: " + rsvp.getConfirmationCode();
+		String body = 	"Thank you for choosing Z.A.D.B Hotel to enjoy your spectacular trip!" + 
+						"\n\nYour reservation information:\n" + rsvp.toString();
 		
 		System.out.println("SSLEmail Start");
 		Properties props = new Properties();
@@ -59,7 +65,7 @@ public class EmailUtility
 			System.out.println("Message is ready");
 			Transport.send(msg);  
 
-			System.out.println("EMail Sent Successfully!!");
+			System.out.println("Email Sent Successfully!!");
 	    }
 	    catch (Exception e) 
 		{
