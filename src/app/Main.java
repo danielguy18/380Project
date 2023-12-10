@@ -67,7 +67,7 @@ public class Main extends Application {
     {
         LocalDate date = LocalDate.now();
         System.out.println(date.toString());
-        System.out.println("\n\nSelect an option\n1. New Customer\n2. New Reservation\n3. View All Rooms");
+        System.out.println("\n\nSelect an option\n1. New Customer\n2. New Reservation\n3. View All Rooms\n4. Send email");
         Scanner scanner = new Scanner(System.in);
         int selection = 0;
         selection = scanner.nextInt();
@@ -108,7 +108,7 @@ public class Main extends Application {
         Scanner scanner = new Scanner(System.in);
         email = scanner.nextLine();
 
-        EmailUtility.sendEmail(email, "test", "test");
+        EmailUtility.sendEmail(email, "No cap", "thas mid");
         
         scanner.close();
     }
