@@ -195,7 +195,7 @@ public class Reservation
         try 
         {
             //create instance of reader
-            CSVReader reader = new CSVReaderBuilder(new FileReader("lib\\csv\\reservationdata.csv")).build();
+            CSVReader reader = new CSVReaderBuilder(new FileReader("lib\\csv\\reservationdata.csv")).withSkipLines(1).build();
 
             //store all contents of file into a List<String[]>
             reservation_data = reader.readAll();
@@ -254,6 +254,7 @@ public class Reservation
     //saves reservation data from List<String[]> array and writes it to file.
     public static void saveReservationData()
     {
+        String[] header = {"Conf. Code", "Check-In", "Check-Out", "Customer ID", "Room Number", "Occupants", "Room Type"};
         String[] temp = {"", "", "", "", "", "", ""};
         try
         {
@@ -262,6 +263,7 @@ public class Reservation
 
             //CSVWriter which overwrites file instead of appending to the end
             CSVWriter writer = new CSVWriter(new FileWriter(path, false));
+            writer.writeNext(header);
 
             // for loop to iterate through List<String[]> and writes all contents of String[]
             for(Reservation c : reservations)
