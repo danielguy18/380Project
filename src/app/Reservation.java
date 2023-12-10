@@ -177,13 +177,13 @@ public class Reservation
         reservations.add(reservation);
     }
 
-    public static void deleteReservation(Reservation rsvp)
+    public static void deleteReservation(String code)
     {
         for(Reservation temp : reservations)
         {
-            if(temp.confirmation_code == rsvp.confirmation_code)
+            if(temp.getConfirmationCode() == code)
             {
-                reservation_data.remove(reservations.indexOf(rsvp));
+                reservations.remove(temp);
             }
         }
     }

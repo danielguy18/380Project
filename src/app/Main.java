@@ -61,7 +61,7 @@ public class Main extends Application {
     {
         LocalDate date = LocalDate.now();
         System.out.println(date.toString());
-        System.out.println("\n\nSelect an option\n1. New Customer\n2. New Reservation\n3. View All Rooms\n4. Send email");
+        System.out.println("\n\nSelect an option\n1. New Customer\n2. New Reservation\n3. View All Rooms\n4. View All Reservations\n5. Send email\n6. Delete Reservation");
         Scanner scanner = new Scanner(System.in);
         int selection = 0;
         selection = scanner.nextInt();
@@ -83,9 +83,16 @@ public class Main extends Application {
             viewAllRooms();
             break;
 
-            case 4: 
+            case 4:
+            viewAllReservations();
+            break;
+
+            case 5: 
             testEmail();
             break;
+
+            case 6:
+            deleteRSVP();
 
             default:
             selection = 0;
@@ -93,6 +100,25 @@ public class Main extends Application {
         }
         scanner.close();
         return;
+    }
+
+    private static void deleteRSVP()    
+    {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("\nPlease enter the confirmation code for the reservation to delete:\n");
+        String s = scanner.nextLine();
+
+        Reservation.loadReservationData();
+        Reservation.deleteReservation(s);
+        Reservation.saveReservationData();
+
+        System.out.println("Successfully deleted.");
+        scanner.close();
+    }
+
+    private static void viewAllReservations() 
+    {
+        
     }
 
     public static void testEmail()
