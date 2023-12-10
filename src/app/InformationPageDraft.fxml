@@ -110,17 +110,17 @@
             </Label>
             <ImageView fitHeight="133.0" fitWidth="188.0" layoutX="28.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../lib/images/hotel%20staff.jpg" />
+                  <Image url="@lib/images/hotel%20staff.jpg" />
                </image>
             </ImageView>
             <ImageView fitHeight="133.0" fitWidth="188.0" layoutX="226.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../lib/images/hotel%20management.jpg" />
+                  <Image url="@lib/images/hotel%20management.jpg" />
                </image>
             </ImageView>
             <ImageView fitHeight="125.0" fitWidth="200.0" layoutX="432.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../lib/images/hotel%20guests.jpg" />
+                  <Image url="@lib/images/hotel%20guests.jpg" />
                </image>
             </ImageView>
             <Button layoutX="69.0" layoutY="263.0" mnemonicParsing="false" text="Staff Information" />
