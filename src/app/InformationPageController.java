@@ -15,7 +15,7 @@ public class InformationPageController {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    //testing aren
+    
     @FXML
     private AnchorPane InformationSceneAnchorPane;
 

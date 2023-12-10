@@ -34,8 +34,12 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
+
     public static void main(String[] args) 
     {
+        //Inserting all Data from CSV to an Array--
+        
+        //
 
         //Prompt user to launch GUI application or to remain in the console.
         System.out.println("Select an option: \n1. Launch GUI\n2. Remain in console");
@@ -124,7 +128,7 @@ public class Main extends Application {
         LocalDate date = LocalDate.now();
         System.out.println(date.toString());
         Scanner scanner = new Scanner(System.in);
-
+        
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
         formatter = formatter.withLocale(Locale.US);  
         
