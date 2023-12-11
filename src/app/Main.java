@@ -37,7 +37,7 @@ public class Main extends Application {
         }
     }
     private static Scanner x;
-    public static void main(String[] args) 
+    public static void main(String[] args) throws IOException 
     {
         //Inserting all Data from CSV to an Array--
         String datapath = "lib/csv/mainDatabase.csv";
@@ -49,6 +49,7 @@ public class Main extends Application {
         //Format to edit mainDatabase.csv file 
         //editRecord(datapath,editTerm,newID,newRoomType,newPrice);
         //editRecord(datapath,"20", "4000", "QUEENNNN", "5$");  
+        //readRecord(datapath, "KING");
 
         //Prompt user to launch GUI application or to remain in the console.
         System.out.println("Select an option: \n1. Launch GUI\n2. Remain in console");
@@ -110,6 +111,24 @@ public class Main extends Application {
             System.out.println("Error in editRecord: " + e.getMessage());
         }
     }
+
+    public static void readRecord(String datapath, String RoomType) throws IOException {
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(datapath));
+            String line = br.readLine(); // Read the header line
+    
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(",");
+                String RT = values[1].replace("\"", "").trim();
+    
+                if (RT.equals(RoomType)) {
+                   System.out.println("YESS FOUND IT AT ROOM # " + values[0]);
+                }
+            }
+            br.close();
+    }finally{ 
+    }
+}
     
     
 
