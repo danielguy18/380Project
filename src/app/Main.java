@@ -45,7 +45,7 @@ public class Main extends Application {
         String newID = "25";
         String newRoomType = "KING";
         String newPrice = "3000";
-        
+
         //Format to edit mainDatabase.csv file 
         //editRecord(datapath,editTerm,newID,newRoomType,newPrice);
         //editRecord(datapath,"19", "4000", "QUEENNNN", "5$");  
