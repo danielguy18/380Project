@@ -6,6 +6,7 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -64,9 +65,28 @@
                <font>
                   <Font name="System Bold" size="25.0" />
                </font>
+               <effect>
+                  <Bloom />
+               </effect>
             </Label>
-            <Button layoutX="122.0" layoutY="272.0" mnemonicParsing="false" onAction="#btnInformationClicked" prefHeight="36.0" prefWidth="98.0" text="Information" />
-            <Button layoutX="295.0" layoutY="272.0" mnemonicParsing="false" onAction="#btnRoomsClicked" prefHeight="36.0" prefWidth="98.0" text="Rooms" />
+            <Button layoutX="96.0" layoutY="416.0" mnemonicParsing="false" onAction="#btnInformationClicked" text="Information">
+               <font>
+                  <Font name="Impact" size="12.0" />
+               </font></Button>
+            <Button layoutX="294.0" layoutY="415.0" mnemonicParsing="false" onAction="#btnRoomsClicked" text="Rooms">
+               <font>
+                  <Font name="Impact" size="12.0" />
+               </font></Button>
+            <ImageView fitHeight="123.0" fitWidth="117.0" layoutX="77.0" layoutY="309.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="file:/C:/Users/black/Downloads/.vscode/380Project-main/380Project/lib/images/info%20icon%20image.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="94.0" fitWidth="200.0" layoutX="235.0" layoutY="309.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="file:/C:/Users/black/Downloads/.vscode/380Project-main/380Project/lib/images/rooms%20button%20image.jpg" />
+               </image>
+            </ImageView>
          </children></AnchorPane>
   </children>
 </VBox>

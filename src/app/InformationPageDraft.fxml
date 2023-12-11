@@ -108,19 +108,31 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <ImageView fitHeight="133.0" fitWidth="188.0" layoutX="28.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="133.0" fitWidth="188.0" layoutX="28.0" layoutY="124.0" pickOnBounds="true" preserveRatio="true">
                <image>
+<<<<<<< HEAD
                   <Image url="@images/hotel%20staff.jpg" />
+=======
+                  <Image url="file:/C:/Users/black/Downloads/.vscode/380Project-main/380Project/lib/images/hotel%20staff.jpg" />
+>>>>>>> 27728a1d27ed902568f4923c3e649987d65f5f19
                </image>
             </ImageView>
-            <ImageView fitHeight="133.0" fitWidth="188.0" layoutX="226.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="133.0" fitWidth="188.0" layoutX="228.0" layoutY="124.0" pickOnBounds="true" preserveRatio="true">
                <image>
+<<<<<<< HEAD
                   <Image url="@images/hotel%20management.jpg" />
+=======
+                  <Image url="file:/C:/Users/black/Downloads/.vscode/380Project-main/380Project/lib/images/hotel%20management.jpg" />
+>>>>>>> 27728a1d27ed902568f4923c3e649987d65f5f19
                </image>
             </ImageView>
-            <ImageView fitHeight="125.0" fitWidth="200.0" layoutX="432.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="125.0" fitWidth="200.0" layoutX="432.0" layoutY="124.0" pickOnBounds="true" preserveRatio="true">
                <image>
+<<<<<<< HEAD
                   <Image url="@images/hotel%20guests.jpg" />
+=======
+                  <Image url="file:/C:/Users/black/Downloads/.vscode/380Project-main/380Project/lib/images/hotel%20guests.jpg" />
+>>>>>>> 27728a1d27ed902568f4923c3e649987d65f5f19
                </image>
             </ImageView>
             <Button layoutX="69.0" layoutY="263.0" mnemonicParsing="false" text="Staff Information" />
