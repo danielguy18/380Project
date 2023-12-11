@@ -1,5 +1,9 @@
 package app;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ResourceBundle;
 
@@ -17,6 +21,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.control.ListView;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 
 public class RoomsSceneController{
@@ -37,16 +42,6 @@ public class RoomsSceneController{
     //Text Box to test Reading from CSV File:
     @FXML
     private Text TextBox1;
-    @FXML
-    public void initialize(URL url, ResourceBundle resources) {
-      filldata("testing333");
-      System.out.println("Initializing...");
-    }
-    
-    @FXML
-    public void filldata(String item){
-      ListView.getItems().add(item);
-    }
 
     @FXML
     void TestButton(ActionEvent event) {
@@ -70,8 +65,38 @@ public class RoomsSceneController{
     }
 
     @FXML
-    void checkBox1Clicked(ActionEvent event) {
-      
+    void checkBox1Clicked(ActionEvent event) throws IOException {
+      CheckBox checkBox = (CheckBox) event.getSource();
+      if(checkBox.isSelected()){
+        addKingRooms();
+      } else{
+        removeKingRooms();
+      }
+    }
+
+    public void addKingRooms() throws IOException{
+      String RoomType = "KING";
+      try {
+            BufferedReader br = new BufferedReader(new FileReader(datapath));
+            String line = br.readLine(); // Read the header line
+    
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(",");
+                String RT = values[1].replace("\"", "").trim();
+    
+                if (RT.equals(RoomType)) {
+                   System.out.println("YESS FOUND IT AT ROOM # " + values[0]);
+                   ListView.getItems().add("Room Number " + values[0] + "Room Type" + values[1]);
+                }
+            }
+            br.close();
+    }finally{ 
+    }
+    }
+
+    public void removeKingRooms() throws IOException{
+      ListView.getItems().clear();
+      System.out.println("SUCCESSFULLY REMOVED Objects?");
     }
 
     @FXML
