@@ -29,7 +29,7 @@ public class Main extends Application {
             Parent root = FXMLLoader.load(getClass().getResource("Main.fxml")); //Change name to launch different fxml gui.
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
-            primaryStage.setTitle("380 Project Demo Scene");
+            primaryStage.setTitle("ZADB Hotel");
             primaryStage.getIcons().add(new Image(getClass().getResourceAsStream( "icon.png" )));
             primaryStage.show();
         } catch (Exception e) {
@@ -193,7 +193,7 @@ public class Main extends Application {
         System.out.println("Enter email:\n");
         email = scanner.nextLine();
 
-        EmailUtility.sendEmail(email, new Reservation(LocalDate.now(), LocalDate.now(), new Customer(), RoomType.KING,2, 2));
+        EmailUtility.sendEmail(email, "Subject", "Body");
         
         scanner.close();
     }
@@ -301,7 +301,6 @@ public class Main extends Application {
         Reservation.saveReservationData();
         Reservation.printReservationData();
         
-        EmailUtility.sendEmail(email, rsvp);
         scanner.close();
     }
 }
