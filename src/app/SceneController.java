@@ -13,7 +13,7 @@ public class SceneController {
     private Stage stage;
     private Scene scene;
     private Parent root;
-
+    
     public void switchToScene1(ActionEvent event) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();

@@ -50,7 +50,7 @@ public class Main extends Application {
         //editRecord(datapath,editTerm,newID,newRoomType,newPrice);
         //editRecord(datapath,"20", "4000", "QUEENNNN", "5$");  
         //readRecord(datapath, "KING");
-
+        
         //Prompt user to launch GUI application or to remain in the console.
         System.out.println("Select an option: \n1. Launch GUI\n2. Remain in console");
         int selection = 0;

@@ -71,7 +71,7 @@ public class Room
             
             //store all contents of file into a List<String[]>
             room_data = reader.readAll();
-
+            
             //the following adds the contents of customer_data into a list of customers for easy manipulation later
             //loop through all String[] entries within List<String[]>
             for(String[] array : room_data) 

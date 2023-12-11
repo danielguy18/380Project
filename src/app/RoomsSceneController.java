@@ -93,7 +93,7 @@ public class RoomsSceneController{
     }finally{ 
     }
     }
-
+    
     public void removeKingRooms() throws IOException{
       ListView.getItems().clear();
       System.out.println("SUCCESSFULLY REMOVED Objects?");
