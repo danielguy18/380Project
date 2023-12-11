@@ -120,7 +120,7 @@
                   <Image url="@images/hotel%20guests.jpg" />
                </image>
             </ImageView>
-            <Button layoutX="69.0" layoutY="263.0" mnemonicParsing="false" text="Staff Information" />
+            <Button layoutX="69.0" layoutY="263.0" mnemonicParsing="false" onAction="#btnStaffInformationClicked" text="Staff Information" />
             <Button layoutX="254.0" layoutY="263.0" mnemonicParsing="false" text="Managers Information" />
             <Button layoutX="473.0" layoutY="263.0" mnemonicParsing="false" text="Guest Information" />
             <Button layoutX="534.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnBack" text="Back" />
