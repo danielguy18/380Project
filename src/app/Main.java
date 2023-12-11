@@ -120,10 +120,19 @@ public class Main extends Application {
     {
         Scanner scanner = new Scanner(System.in);
         System.out.println("\nPlease enter the confirmation code for the reservation to delete:\n");
-        String s = scanner.nextLine();
+        String s = null;
+        s = scanner.nextLine();
 
         Reservation.loadReservationData();
+
+        Reservation.printReservationData();
+        Reservation.printListString();
+
         Reservation.deleteReservation(s);
+
+        Reservation.printReservationData();
+        Reservation.printListString();
+
         Reservation.saveReservationData();
 
         System.out.println("Successfully deleted.");
@@ -142,7 +151,7 @@ public class Main extends Application {
         System.out.println("Enter email:\n");
         email = scanner.nextLine();
 
-        EmailUtility.sendEmail(email, new Reservation());
+        EmailUtility.sendEmail(email, new Reservation(LocalDate.now(), LocalDate.now(), new Customer(), RoomType.KING,2, 2));
         
         scanner.close();
     }

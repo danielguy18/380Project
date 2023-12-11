@@ -181,9 +181,11 @@ public class Reservation
     {
         for(Reservation temp : reservations)
         {
-            if(temp.getConfirmationCode() == code)
+            String s = temp.getConfirmationCode();
+            if(s == code)
             {
                 reservations.remove(temp);
+
             }
         }
     }
