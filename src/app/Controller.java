@@ -8,6 +8,7 @@ import java.io.Reader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuBar;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.FileChooser;
@@ -28,16 +29,18 @@ public class Controller {
    private Stage stage;
    private Scene scene;
    private Parent root;
-   
+
    Alert alert = new Alert(Alert.AlertType.NONE);
    private File csvFile;
 
-   
-   /** 
-    * This function corresponds with the File->Open MenuItem. When clicked, it will open a window prompting the user to choose a file.
-      If the file extension is not .csv, it will output an error message. 
-      If the file extension is .csv, it will output a success message and assign the file to the {@link #csvFile} variable.
-      Uses {@link #getExtension(String)} to check the file extension.
+   /**
+    * This function corresponds with the File->Open MenuItem. When clicked, it will
+    * open a window prompting the user to choose a file.
+    * If the file extension is not .csv, it will output an error message.
+    * If the file extension is .csv, it will output a success message and assign
+    * the file to the {@link #csvFile} variable.
+    * Uses {@link #getExtension(String)} to check the file extension.
+    * 
     * @author Bao Ngo
     * @param event the event that triggers the button click
     */
@@ -48,7 +51,8 @@ public class Controller {
          fileChooser.setTitle("Open Resource File");
          csvFile = fileChooser.showOpenDialog(null);
          // File verification
-         if (csvFile == null || !csvFile.exists() || !csvFile.isFile() || !getExtension(csvFile.getName()).equals(".csv")) {
+         if (csvFile == null || !csvFile.exists() || !csvFile.isFile()
+               || !getExtension(csvFile.getName()).equals(".csv")) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Invalid file. Please select a valid .csv file.");
             alert.show();
@@ -60,7 +64,7 @@ public class Controller {
             alert.show();
          }
          // handle csv file
-         printConsoleCSV(); //debug function
+         printConsoleCSV(); // debug function
       } catch (SecurityException e) {
          alert.setAlertType(Alert.AlertType.ERROR);
          alert.setContentText("Security Exception");
@@ -69,13 +73,15 @@ public class Controller {
 
    }
 
-   
-   /** 
-    * Checks the inputted fileName and output the extension of the file. 
-    * The extension must be at the end of the string with no trailing whitespace. The extension character limit is maximum of 5.
+   /**
+    * Checks the inputted fileName and output the extension of the file.
+    * The extension must be at the end of the string with no trailing whitespace.
+    * The extension character limit is maximum of 5.
+    * 
     * @author Bao Ngo
     * @param fileName the file name to be examined in string
-    * @return the extension of the file including the dot (e.g. ".csv") or empty if no extension was found
+    * @return the extension of the file including the dot (e.g. ".csv") or empty if
+    *         no extension was found
     */
    public String getExtension(String fileName) {
       Pattern pattern = Pattern.compile("\\.[0-9a-z]{1,6}$", Pattern.CASE_INSENSITIVE);
@@ -88,7 +94,7 @@ public class Controller {
    }
 
    // Debug function to print out the csv file to console
-   //first 3 columns only
+   // first 3 columns only
    public void printConsoleCSV() {
       try {
          Reader in = new FileReader(csvFile.toString());
@@ -104,31 +110,71 @@ public class Controller {
 
    }
 
-   /** 
+   /**
     * This Function moves the Screen to "Information's" Page.
+    * 
     * @author Zelgehai Zahid
     * @param event the event that triggers the button click
     */
-    @FXML
-    private Label mainSceneTitle;
-    @FXML
-    void btnInformationClicked(ActionEvent event) throws IOException {
+   @FXML
+   private Label mainSceneTitle;
+
+   @FXML
+   void btnInformationClicked(ActionEvent event) throws IOException {
       Parent root = FXMLLoader.load(getClass().getResource("InformationPageDraft.fxml"));
-      stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+      stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
       scene = new Scene(root);
       stage.setScene(scene);
       stage.show();
-      //Stage mainWindow = (Stage) mainSceneTitle.getScene().getWindow();
-      //mainSceneTitle.setText("testing Button");
-    }
-    @FXML
-    void btnRoomsClicked(ActionEvent event) throws IOException {
+      // Stage mainWindow = (Stage) mainSceneTitle.getScene().getWindow();
+      // mainSceneTitle.setText("testing Button");
+   }
+
+   @FXML
+   void btnRoomsClicked(ActionEvent event) throws IOException {
       Parent root = FXMLLoader.load(getClass().getResource("RoomsScene.fxml"));
-      stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+      stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
       scene = new Scene(root);
       stage.setScene(scene);
       stage.show();
-    }
-   
-    
+   }
+
+   @FXML
+   MenuBar menuBar;
+
+   /**
+    * Handles the event when the "Information" menu item is clicked.
+    * Loads the "InformationPageDraft.fxml" file and displays it in the current
+    * window.
+    * 
+    * @param event The action event triggered by clicking the menu item.
+    * @throws IOException If an I/O error occurs while loading the FXML file.
+    * @author Bao Ngo
+    */
+   @FXML
+   void menuItemInformationClicked(ActionEvent event) throws IOException {
+
+      Parent root = FXMLLoader.load(getClass().getResource("InformationPageDraft.fxml"));
+      stage = (Stage) menuBar.getScene().getWindow();
+      scene = new Scene(root);
+      stage.setScene(scene);
+      stage.show();
+   }
+
+   /**
+    * Event handler for when the "Rooms" menu item is clicked.
+    * Loads the RoomsScene.fxml file and displays it in the current stage.
+    * 
+    * @param event The action event triggered by clicking the menu item.
+    * @throws IOException If an error occurs while loading the FXML file.
+    * @author Bao Ngo
+    */
+   @FXML
+   void menuItemRoomsClicked(ActionEvent event) throws IOException {
+      Parent root = FXMLLoader.load(getClass().getResource("RoomsScene.fxml"));
+      stage = (Stage) menuBar.getScene().getWindow();
+      scene = new Scene(root);
+      stage.setScene(scene);
+      stage.show();
+   }
 }
