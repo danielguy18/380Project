@@ -38,6 +38,9 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -90,7 +93,22 @@
                </font>
             </Label>
             <Button layoutX="536.0" layoutY="19.0" mnemonicParsing="false" onAction="#btnBack" text="Back" />
+            <ImageView fitHeight="117.0" fitWidth="211.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/image.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="92.0" fitWidth="103.0" layoutX="426.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="file:/C:/Users/black/Downloads/.vscode/380Project-main/380Project/src/app/images/guestinfopageimage.jpg" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
+      <TextArea prefHeight="243.0" prefWidth="640.0" text="Check-In/Check-Out:&#10;- Check-in time: 3:00 PM&#10;- Check-out time: 11:00 AM&#10;Wi-Fi Access:&#10;- Complimentary Wi-Fi available throughout the hotel.&#10;Amenities:&#10;Pool and Fitness Center hours: [Specify]&#10;- On-site restaurant: [The Lazy Crab Open All Week 8am-11pm]&#10;Housekeeping:&#10;- Daily room cleaning services available.&#10;Contact Information:&#10;- Front Desk: (555) 123-4567&#10;Emergency: &#10;- Dial 0 from your room phone.&#10;Additional Services:&#10;- Concierge for local recommendations and assistance.&#10;- Room service available during specified hours.">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </TextArea>
    </children>
 </VBox>

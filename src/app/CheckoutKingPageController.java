@@ -23,12 +23,12 @@ public class CheckoutKingPageController {
 
     @FXML
     void btnConfirmClicked(ActionEvent event) throws IOException {
-      EmailUtility.sendEmail("Zelgehai@gmail.com", "Email Confirmation for Z.A.D.B KING HOTEL ROOM", "Thank you for choosing Z.A.D.B for your upcoming stay! \n\nWe are delighted to confirm your reservation and are eagerly awaiting your arrival. Please find your reservation details below:\n\nReservation Confirmation Number: 10001\n\nArrival and Check-in:\r\n" + //
+      EmailUtility.sendEmail("Zelgehai.zahid.567@my.csun.edu", "Email Confirmation for Z.A.D.B KING HOTEL ROOM", "Thank you for choosing Z.A.D.B for your upcoming stay! \n\nWe are delighted to confirm your reservation and are eagerly awaiting your arrival. Please find your reservation details below:\n\nReservation Confirmation Number: 10001\n\nArrival and Check-in:\r\n" +
           "Check-in time is from 3:00 PM to 11:00PM PST. If you expect to arrive earlier and wish for an early check-in, please let us know in advance and we will do our best to accommodate your request based on availability.\n\n Sincerely, \nZ.A.D.B Managment");
       //EmailUtility.sendEmail("Zelgehai.zahid.567@my.csun.edu", "Email Confirmation for Z.A.D.B KING HOTEL ROOM", "Thank you for choosing Z.A.D.B for your upcoming stay! \n\nWe are delighted to confirm your reservation and are eagerly awaiting your arrival. Please find your reservation details below:\n\nReservation Confirmation Number: 10001\n\nArrival and Check-in:\r\n" + //
-          "Check-in time is from 3:00 PM to 11:00PM PST. If you expect to arrive earlier and wish for an early check-in, please let us know in advance and we will do our best to accommodate your request based on availability.\n\n Sincerely, \nZ.A.D.B Managment");
+        //  "Check-in time is from 3:00 PM to 11:00PM PST. If you expect to arrive earlier and wish for an early check-in, please let us know in advance and we will do our best to accommodate your request based on availability.\n\n Sincerely, \nZ.A.D.B Managment");
       //EmailUtility.sendEmail("Daniel.gilberto.252@my.csun.edu", "Email Confirmation for Z.A.D.B KING HOTEL ROOM", "Thank you for choosing Z.A.D.B for your upcoming stay! \n\nWe are delighted to confirm your reservation and are eagerly awaiting your arrival. Please find your reservation details below:\n\nReservation Confirmation Number: 10001\n\nArrival and Check-in:\r\n" + //
-          "Check-in time is from 3:00 PM to 11:00PM PST. If you expect to arrive earlier and wish for an early check-in, please let us know in advance and we will do our best to accommodate your request based on availability.\n\n Sincerely, \nZ.A.D.B Managment");
+        //  "Check-in time is from 3:00 PM to 11:00PM PST. If you expect to arrive earlier and wish for an early check-in, please let us know in advance and we will do our best to accommodate your request based on availability.\n\n Sincerely, \nZ.A.D.B Managment");
       Parent root = FXMLLoader.load(getClass().getResource("ThankYouPage.fxml"));
       stage = (Stage)((Node)event.getSource()).getScene().getWindow();
       scene = new Scene(root);

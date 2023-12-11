@@ -35,7 +35,6 @@ public class RoomsSceneController implements Initializable{
     String[] food = {"Room:\"1\"\"KING\""};
     String currentitem;
 
-
     @FXML
     private AnchorPane InformationSceneAnchorPane;
     
@@ -159,7 +158,7 @@ public class RoomsSceneController implements Initializable{
       ListView.getItems().clear();
       System.out.println("SUCCESSFULLY REMOVED Queen Objects");
     }
-
+    
     @FXML
     void checkBox3Clicked(ActionEvent event) {
 

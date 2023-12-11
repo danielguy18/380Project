@@ -1,0 +1,216 @@
+@startuml
+
+class Customer {
+    - static customer_data : List<String[]>
+    - static customers : List<Customer>
+    - UID : String
+    - first_name : String
+    - last_name : String
+    - email : String
+    - address : String
+    - birthday : LocalDate
+
+    + Customer()
+    + Customer(fn : String, ln : String, em : String, add : String, bday : LocalDate)
+    + getFirstName() : String
+    + setFirstName(fname : String) : void
+    + getLastName() : String
+    + setLastName(lname : String) : void
+    + getEmail() : String
+    + setEmail(email : String) : void
+    + getAddress() : String
+    + setAddress(address : String) : void
+    + getBirthday() : LocalDate
+    + setBirthday(bday : LocalDate) : void
+    + toString() : String
+    + static isComplete(customer : Customer) : boolean
+    + static addCustomer(customer : Customer) : void
+    + static getCustomer(id : String) : Customer
+    + setCustomer(id : String) : void
+    + getCustomerID() : String
+    + static loadCustomerData() : void
+    + static printCustomerData() : void
+    + static printListString() : void
+    + static saveCustomerData() : void
+    + generateUID() : String
+}
+
+class Reservation {
+    - confirmation_code : String
+    - checkInDate : LocalDate
+    - checkOutDate : LocalDate
+    - customer_uid : String
+    - type : Room.RoomType
+    - room_number : int
+    - occupants : int
+    - static reservation_data : List<String[]>
+    - static reservations : List<Reservation>
+
+    + Reservation()
+    + Reservation(checkInDate : LocalDate, checkOutDate : LocalDate, customer : Customer, type : Room.RoomType, room_number : int, occupants : int)
+    + getRoomNumber() : int
+    + setRoomNumber(room_number : int) : void
+    + getCustomerID() : String
+    + setCustomerID(id : String) : void
+    + setCustomer(customer : Customer) : void
+    + getCheckInDate() : LocalDate
+    + setCheckInDate(date : LocalDate) : void
+    + getCheckOutDate() : LocalDate
+    + setCheckOutDate(date : LocalDate) : void
+    + getRoomType() : Room.RoomType
+    + setRoomType(type : Room.RoomType) : void
+    + setRoomType(s : String) : void
+    + getNumOccupants() : int
+    + setNumOccupants(num : int) : void
+    + getConfirmationCode() : String
+    + static isComplete(rsvp : Reservation) : boolean
+    + static getReservation(code : String) : Reservation
+    + static addReservation(reservation : Reservation) : void
+    + static deleteReservation(code : String) : void
+    + static loadReservationData() : void
+    + static printReservationData() : void
+    + static printListString() : void
+    + static saveReservationData() : void
+    + toString() : String
+    + static generateConfirmationCode() : String
+}
+
+enum Room.RoomType {
+    KING
+    QUEEN
+}
+
+Reservation --> "1" Room.RoomType
+
+class Room {
+    {static} MAX_ROOMS : int = 20
+    - room_number : int
+    - type : RoomType
+    - available : boolean
+    - price : double
+    - confirmation_code : String
+    - static room_data : List<String[]>
+    - static room_list : List<Room>
+
+    + Room()
+    + isAvailable() : boolean
+    + getRoomNumber() : int
+    + getRoomType() : RoomType
+    + getPrice() : double
+    + getRSVPCode() : String
+    + static loadRoomData() : void
+    + static printRoomData() : void
+    + toString() : String
+    + static saveRoomData() : void
+}
+
+enum RoomType {
+    QUEEN
+    KING
+}
+
+class Controller {
+    - stage : Stage
+    - scene : Scene
+    - root : Parent
+    - alert : Alert
+    - csvFile : File
+
+    + onFileOpenButtonClicked(event : ActionEvent) : void
+    + getExtension(fileName : String) : String
+    + printConsoleCSV() : void
+    + btnInformationClicked(event : ActionEvent) : void
+    + btnRoomsClicked(event : ActionEvent) : void
+    + menuItemInformationClicked(event : ActionEvent) : void
+    + menuItemRoomsClicked(event : ActionEvent) : void
+}
+
+class ActionEvent {
+}
+
+class FileChooser {
+}
+
+class Alert {
+}
+
+class Parent {
+}
+
+class Stage {
+}
+
+class Scene {
+}
+
+class FXMLLoader {
+}
+
+Controller --> ActionEvent : uses
+Controller --> FileChooser : uses
+Controller --> Alert : uses
+Controller --> Parent : uses
+Controller --> Stage : uses
+Controller --> Scene : uses
+Controller --> FXMLLoader : uses
+
+class Main {
+    - stage : Stage
+    - scene : Scene
+    - root : Parent
+    - csvFile : File
+
+    + start(primaryStage : Stage) : void
+    + main(args : String[]) : void
+    + editRecord(datapath : String, editTerm : String, newID : String, newRoomType : String, newPrice : String) : void
+    + readRecord(datapath : String, RoomType : String) : void
+    + console() : void
+    + deleteRSVP() : void
+    + viewAllReservations() : void
+    + testEmail() : void
+    + viewAllRooms() : void
+    + newCustomer() : void
+    + newReservation() : void
+}
+
+class Application {
+}
+
+class File {
+}
+
+Main --|> Application
+Main --> Stage : uses
+Main --> Scene : uses
+Main --> Parent : uses
+Main --> FXMLLoader : uses
+Main --> File : uses
+
+class InformationPageController {
+    - stage : Stage
+    - scene : Scene
+    - root : Parent
+    - InformationSceneAnchorPane : AnchorPane
+
+    + BtnGuestInformationClicked(event : ActionEvent) : void
+    + BtnManagersInformationClicked(event : ActionEvent) : void
+    + btnStaffInformationClicked(event : ActionEvent) : void
+    + btnBack(event : ActionEvent) : void
+}
+
+class Node {
+}
+
+class AnchorPane {
+}
+
+InformationPageController --> ActionEvent : uses
+InformationPageController --> FXMLLoader : uses
+InformationPageController --> Node : uses
+InformationPageController --> Parent : uses
+InformationPageController --> Scene : uses
+InformationPageController --> Stage : uses
+InformationPageController --> AnchorPane : uses
+
+
+@enduml
