@@ -55,7 +55,7 @@
                   <Image url="@images/MainPageImage.png" />
                </image>
             </ImageView>
-            <Label id="mainSceneTitle" fx:id="mainSceneTitle" layoutX="162.0" layoutY="14.0" prefHeight="17.0" prefWidth="317.0" text="WELCOME TO ZADB Hotel" underline="true">
+            <Label id="mainSceneTitle" fx:id="mainSceneTitle" layoutX="165.0" layoutY="14.0" prefHeight="17.0" prefWidth="317.0" text="WELCOME TO ZADB Hotel" underline="true">
                <font>
                   <Font name="System Bold" size="25.0" />
                </font>
