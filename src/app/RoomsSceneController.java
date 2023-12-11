@@ -32,6 +32,9 @@ public class RoomsSceneController implements Initializable{
     private Scene scene;
     private Parent root;
     String datapath = "lib/csv/mainDatabase.csv";
+    String[] smokedRooms = {"Room:\"2\"\"KING\" - SMOKING"+"\nRoom:\"4\"\"KING\" - SMOKING"+"\nRoom:\"6\"\"KING\" - SMOKING" +
+    "\nRoom:\"13\"\"QUEEN\" - SMOKING" + "\nRoom:\"16\"\"QUEEN\" - SMOKING" + "\nRoom:\"17\"\"QUEEN\" - SMOKING"
+    };
     String[] food = {"Room:\"1\"\"KING\""};
     String currentitem;
 
@@ -110,7 +113,7 @@ public class RoomsSceneController implements Initializable{
                 String RT = values[1].replace("\"", "").trim();
     
                 if (RT.equals(RoomType)) {
-                   System.out.println("YESS FOUND IT AT ROOM # " + values[0]);
+                   System.out.println("YES FOUND IT AT ROOM # " + values[0]);
                    ListView.getItems().add("Room:" + values[0] + "" + values[1]);
                 }
             }
@@ -145,7 +148,7 @@ public class RoomsSceneController implements Initializable{
                 String RT = values[1].replace("\"", "").trim();
     
                 if (RT.equals(RoomType)) {
-                   System.out.println("YESS FOUND IT AT ROOM # " + values[0]);
+                   System.out.println("YES FOUND IT AT ROOM # " + values[0]);
                    ListView.getItems().add("Room:" + values[0] + " " + values[1]);
                 }
             }
@@ -158,13 +161,23 @@ public class RoomsSceneController implements Initializable{
       ListView.getItems().clear();
       System.out.println("SUCCESSFULLY REMOVED Queen Objects");
     }
-    
-    @FXML
-    void checkBox3Clicked(ActionEvent event) {
 
+    @FXML
+    void checkBox3Clicked(ActionEvent event) throws IOException {
+      CheckBox checkBox = (CheckBox) event.getSource();
+      if(checkBox.isSelected()){
+        addSmokingRooms();
+      } else{
+        removeSmokingRooms();
+      }
     }
 
+    public void addSmokingRooms() throws IOException{
+      ListView.getItems().addAll(smokedRooms);
+    }
 
-
-
+    public void removeSmokingRooms() throws IOException{
+      ListView.getItems().clear();
+      System.out.println("SUCCESSFULLY REMOVED Smoking Rooms Objects");
+    }
 }

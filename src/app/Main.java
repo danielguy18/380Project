@@ -12,8 +12,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.Scanner;
-
-
 import app.Room.RoomType;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

@@ -38,7 +38,7 @@ public class CheckoutKingPageController {
     
     @FXML
     void btnBack(ActionEvent event) throws IOException {
-    Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+    Parent root = FXMLLoader.load(getClass().getResource("RoomsScene.fxml"));
       stage = (Stage)((Node)event.getSource()).getScene().getWindow();
       scene = new Scene(root);
       stage.setScene(scene);
