@@ -58,7 +58,7 @@
          <children>
             <ImageView fitHeight="479.0" fitWidth="691.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../lib/images/HomeScreenImg.jpeg" />
+                  <Image url="file:/C:/Users/black/Downloads/.vscode/380Project-main/380Project/lib/images/HomeScreenImg.jpeg" />
                </image>
             </ImageView>
             <Label id="mainSceneTitle" fx:id="mainSceneTitle" layoutX="163.0" layoutY="14.0" prefHeight="47.0" prefWidth="310.0" text="WELCOME TO ZADB Hotel" underline="true">
@@ -79,12 +79,12 @@
                </font></Button>
             <ImageView fitHeight="123.0" fitWidth="117.0" layoutX="77.0" layoutY="309.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../lib/images/info%20icon%20image.jpg" />
+                  <Image url="file:/C:/Users/black/Downloads/.vscode/380Project-main/380Project/lib/images/info%20icon%20image.jpg" />
                </image>
             </ImageView>
             <ImageView fitHeight="94.0" fitWidth="200.0" layoutX="235.0" layoutY="309.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../lib/images/rooms%20button%20image.jpg" />
+                  <Image url="file:/C:/Users/black/Downloads/.vscode/380Project-main/380Project/lib/images/rooms%20button%20image.jpg" />
                </image>
             </ImageView>
          </children></AnchorPane>
