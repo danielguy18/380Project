@@ -15,3 +15,16 @@ try {
         } catch (IOException e){
             e.printStackTrace();
         }
+
+
+@FXML
+    void btnPrintToDatabase(ActionEvent event) {
+      Main.editRecord(datapath, "3", "42", "QUEEN", "9000");
+      TextBox1.setText("Changed Database successful!");
+    }
+
+@FXML
+    void removeName(MouseEvent event){
+        int selectedID = listofNames.getSelectionModel().getSelectedIndex();
+        listofNames.getItems().remove(selectedID)
+    }
