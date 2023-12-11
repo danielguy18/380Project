@@ -1,0 +1,17 @@
+try {
+            BufferedReader br = new BufferedReader(new FileReader(datapath));
+            BufferedWriter bw = new BufferedWriter(new FileWriter(datapath));
+
+            String line = "";
+            while((line = br.readLine()) != null){
+                String[] values = line.split(",");
+                System.out.println(line);
+                System.out.println(values[0]);
+            }
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            System.out.println("File csv mainDatapath not Found");
+            e.printStackTrace();
+        } catch (IOException e){
+            e.printStackTrace();
+        }

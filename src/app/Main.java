@@ -1,8 +1,13 @@
 package app;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
@@ -31,19 +36,17 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
-
+    private static Scanner x;
     public static void main(String[] args) 
     {
         //Inserting all Data from CSV to an Array--
         String datapath = "lib/csv/mainDatabase.csv";
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(datapath));
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            System.out.println("File csv mainDatapath not Found");
-            e.printStackTrace();
-        }
-        //
+        String editTerm = "20";
+        String newID = "25";
+        String newRoomType = "KING";
+        String newPrice = "3000";
+
+        editRecord(datapath,editTerm,newID,newRoomType,newPrice);
 
         //Prompt user to launch GUI application or to remain in the console.
         System.out.println("Select an option: \n1. Launch GUI\n2. Remain in console");
@@ -70,6 +73,43 @@ public class Main extends Application {
         return;
     }
 
+
+    public static void editRecord(String datapath, String editTerm, String newID, String newRoomType, String newPrice) {
+        String tempFile = "temp.csv";
+        File oldFile = new File(datapath);
+        File newFile = new File(tempFile);
+    
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(datapath));
+            BufferedWriter bw = new BufferedWriter(new FileWriter(tempFile));
+    
+            String line = br.readLine(); // Read the header line
+            bw.write(line + "\n"); // Write the header line to temp file
+    
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(",");
+                String ID = values[0].replace("\"", "").trim();
+    
+                if (ID.equals(editTerm)) {
+                    line = "\"" + newID + "\",\"" + newRoomType + "," + values[2] + ",\"" + newPrice + "\"," + values[4];
+                }
+                bw.write(line + "\n");
+            }
+    
+            br.close();
+            bw.close();
+    
+            if(oldFile.delete()) {
+                newFile.renameTo(oldFile);
+            } else {
+                System.out.println("Could not delete old file");
+            }
+        } catch (Exception e) {
+            System.out.println("Error in editRecord: " + e.getMessage());
+        }
+    }
+    
+    
 
     public static void console()
     {
