@@ -107,7 +107,7 @@
       </AnchorPane>
       <TextArea prefHeight="243.0" prefWidth="640.0" text="Check-In/Check-Out:&#10;- Check-in time: 3:00 PM&#10;- Check-out time: 11:00 AM&#10;Wi-Fi Access:&#10;- Complimentary Wi-Fi available throughout the hotel.&#10;Amenities:&#10;Pool and Fitness Center hours: [Specify]&#10;- On-site restaurant: [The Lazy Crab Open All Week 8am-11pm]&#10;Housekeeping:&#10;- Daily room cleaning services available.&#10;Contact Information:&#10;- Front Desk: (555) 123-4567&#10;Emergency: &#10;- Dial 0 from your room phone.&#10;Additional Services:&#10;- Concierge for local recommendations and assistance.&#10;- Room service available during specified hours.">
          <font>
-            <Font name="System Bold" size="11.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
       </TextArea>
    </children>
