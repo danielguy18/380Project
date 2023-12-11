@@ -62,13 +62,12 @@
                </font>
             </Label>
             <Button layoutX="565.0" layoutY="13.0" mnemonicParsing="false" onAction="#btnBack" text="Back" />
-            <Button layoutX="222.0" layoutY="186.0" mnemonicParsing="false" onAction="#btnPrintToDatabase" text="Print" />
-            <Text fx:id="TextBox1" layoutX="95.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+            <Text fx:id="TextBox1" layoutX="95.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please Select a Room" />
             <CheckBox layoutX="59.0" layoutY="81.0" mnemonicParsing="false" onAction="#checkBox1Clicked" text="King Bed" />
             <ListView fx:id="ListView" layoutX="379.0" layoutY="86.0" prefHeight="267.0" prefWidth="239.0" />
             <CheckBox layoutX="162.0" layoutY="81.0" mnemonicParsing="false" onAction="#checkBox2Clicked" text="Queen Bed" />
             <CheckBox layoutX="263.0" layoutY="81.0" mnemonicParsing="false" onAction="#checkBox3Clicked" text="Smoking Room" />
-            <Button layoutX="294.0" layoutY="274.0" mnemonicParsing="false" onAction="#TestButton" text="Button" />
+            <Button layoutX="242.0" layoutY="255.0" mnemonicParsing="false" onAction="#TestButton" text="Checkout" />
          </children></AnchorPane>
   </children>
 </VBox>

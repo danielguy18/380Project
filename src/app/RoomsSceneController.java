@@ -32,8 +32,8 @@ public class RoomsSceneController implements Initializable{
     private Scene scene;
     private Parent root;
     String datapath = "lib/csv/mainDatabase.csv";
-    String[] food = {"pizza", "Sushi", "Ramen"};
-    String currentFood;
+    String[] food = {"Room:\"1\"\"KING\""};
+    String currentitem;
 
 
     @FXML
@@ -48,29 +48,36 @@ public class RoomsSceneController implements Initializable{
     @Override
     public void initialize(java.net.URL location, ResourceBundle resources) {
       // TODO Auto-generated method stub
-      ListView.getItems().addAll(food);
+      //ListView.getItems().addAll(food);
       ListView.getSelectionModel().selectedItemProperty().addListener(new javafx.beans.value.ChangeListener<String>() {
 
         @Override
         public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2) {
-          currentFood = ListView.getSelectionModel().getSelectedItem();
-          TextBox1.setText(currentFood);
+          currentitem = ListView.getSelectionModel().getSelectedItem();
+          TextBox1.setText(currentitem);
       }
     });
     }
     //Text Box to test Reading from CSV File:
-
-    
     @FXML
-    void TestButton(ActionEvent event) {
-      ListView.getItems().add("testing");
+    void TestButton(ActionEvent event) throws IOException {
+      currentitem = ListView.getSelectionModel().getSelectedItem();
+      if (currentitem == "Room:\"1\"\"KING\""){
+      Parent root = FXMLLoader.load(getClass().getResource("CheckoutKingPage.fxml"));
+      stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+      scene = new Scene(root);
+      stage.setScene(scene);
+      stage.show();
+      }
     }
-
-    @FXML
+    
+    /*@FXML
     void btnPrintToDatabase(ActionEvent event) {
       Main.editRecord(datapath, "3", "42", "QUEEN", "9000");
       TextBox1.setText("Changed Database successful!");
     }
+     * 
+     */
 
 
     @FXML
@@ -86,6 +93,7 @@ public class RoomsSceneController implements Initializable{
     void checkBox1Clicked(ActionEvent event) throws IOException {
       CheckBox checkBox = (CheckBox) event.getSource();
       if(checkBox.isSelected()){
+        ListView.getItems().addAll(food);
         addKingRooms();
       } else{
         removeKingRooms();
@@ -104,7 +112,7 @@ public class RoomsSceneController implements Initializable{
     
                 if (RT.equals(RoomType)) {
                    System.out.println("YESS FOUND IT AT ROOM # " + values[0]);
-                   ListView.getItems().add("Room:" + values[0] + " " + values[1]);
+                   ListView.getItems().add("Room:" + values[0] + "" + values[1]);
                 }
             }
             br.close();
