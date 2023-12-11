@@ -8,7 +8,9 @@ import java.io.IOException;
 import java.util.ResourceBundle;
 
 import javax.print.DocFlavor.URL;
+import javax.swing.event.ChangeListener;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,15 +23,17 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 
-public class RoomsSceneController{
+public class RoomsSceneController implements Initializable{
     private Stage stage;
     private Scene scene;
     private Parent root;
     String datapath = "lib/csv/mainDatabase.csv";
-
+    String[] food = {"pizza", "Sushi", "Ramen"};
+    String currentFood;
 
 
     @FXML
@@ -37,12 +41,26 @@ public class RoomsSceneController{
     
     @FXML
     private ListView<String> ListView;
-    
 
-    //Text Box to test Reading from CSV File:
     @FXML
     private Text TextBox1;
 
+    @Override
+    public void initialize(java.net.URL location, ResourceBundle resources) {
+      // TODO Auto-generated method stub
+      ListView.getItems().addAll(food);
+      ListView.getSelectionModel().selectedItemProperty().addListener(new javafx.beans.value.ChangeListener<String>() {
+
+        @Override
+        public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2) {
+          currentFood = ListView.getSelectionModel().getSelectedItem();
+          TextBox1.setText(currentFood);
+      }
+    });
+    }
+    //Text Box to test Reading from CSV File:
+
+    
     @FXML
     void TestButton(ActionEvent event) {
       ListView.getItems().add("testing");
@@ -86,28 +104,60 @@ public class RoomsSceneController{
     
                 if (RT.equals(RoomType)) {
                    System.out.println("YESS FOUND IT AT ROOM # " + values[0]);
-                   ListView.getItems().add("Room Number " + values[0] + "Room Type" + values[1]);
+                   ListView.getItems().add("Room:" + values[0] + " " + values[1]);
                 }
             }
             br.close();
     }finally{ 
     }
     }
-    
+
     public void removeKingRooms() throws IOException{
       ListView.getItems().clear();
-      System.out.println("SUCCESSFULLY REMOVED Objects?");
+      System.out.println("SUCCESSFULLY REMOVED King Objects");
     }
 
     @FXML
-    void checkBox2Clicked(ActionEvent event) {
+    void checkBox2Clicked(ActionEvent event) throws IOException {
+    CheckBox checkBox = (CheckBox) event.getSource();
+      if(checkBox.isSelected()){
+        addQueenRooms();
+      } else{
+        removeQueenRooms();
+      }
+    }
 
+    public void addQueenRooms() throws IOException{
+      String RoomType = "QUEEN";
+      try {
+            BufferedReader br = new BufferedReader(new FileReader(datapath));
+            String line = br.readLine(); // Read the header line
+    
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(",");
+                String RT = values[1].replace("\"", "").trim();
+    
+                if (RT.equals(RoomType)) {
+                   System.out.println("YESS FOUND IT AT ROOM # " + values[0]);
+                   ListView.getItems().add("Room:" + values[0] + " " + values[1]);
+                }
+            }
+            br.close();
+    }finally{ 
+    }
+    }
+
+    public void removeQueenRooms() throws IOException{
+      ListView.getItems().clear();
+      System.out.println("SUCCESSFULLY REMOVED Queen Objects");
     }
 
     @FXML
     void checkBox3Clicked(ActionEvent event) {
 
     }
+
+
 
 
 }
